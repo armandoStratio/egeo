@@ -22,6 +22,7 @@ export const OPTIONS: MenuOption[] = [
    { route: 'alerts-demo', name: 'Alerts' },
    { route: 'dropdown-demo', name: 'Dropdown' },
    { route: 'dropdown-menu-demo', name: 'Dropdown Menu' },
+   { route: 'button-demo', name: 'Buttons' },
    { route: 'help-demo', name: 'help' },
    { route: 'info-box-demo', name: 'info-box' },
    { route: 'item-list-demo', name: 'item-list' },

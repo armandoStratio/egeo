@@ -27,6 +27,7 @@ export const routes: Routes = [
          { path: '', redirectTo: 'main', pathMatch: 'full' },
          { path: 'alerts-demo', loadChildren: '@stratio/egeo-demo#StAlertsDemoModule' },
          { path: 'breadcrumbs', loadChildren: '@stratio/egeo-demo#StBreadcrumbsDemoModule' },
+         { path: 'button-demo', loadChildren: '@stratio/egeo-demo#StButtonDemoModule' },
          { path: 'dropdown-demo', loadChildren: '@stratio/egeo-demo#StDropdownDemoModule' },
          { path: 'dropdown-menu-demo', loadChildren: '@stratio/egeo-demo#StDropdownMenuDemoModule' },
          { path: 'help-demo', loadChildren: '@stratio/egeo-demo#StHelpDemoModule' },

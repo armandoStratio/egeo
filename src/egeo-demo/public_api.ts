@@ -29,3 +29,4 @@ export { StSearchDemoModule } from './st-search-demo/st-search-demo.module';
 export { StSelectDemoModule } from './st-select-demo/select-demo.module';
 export { StTreeDemoModule } from './st-tree-demo/st-tree-demo.module';
 export { StTipDemoModule } from './st-tip-demo/st-tip-demo.module';
+export { StButtonDemoModule } from './st-button-demo/st-button-demo.module';
