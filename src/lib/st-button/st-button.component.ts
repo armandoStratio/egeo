@@ -42,7 +42,6 @@ export class StButtonComponent implements OnInit {
    }
 
    public getButtonTypeClass(): string {
-      console.log(this.typeClass, this.themeClass, this.subtypeClass);
 
       if (this.typeClass === 'btnMain') {
          switch (this.subtypeClass) {
