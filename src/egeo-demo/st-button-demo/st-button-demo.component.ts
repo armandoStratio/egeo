@@ -32,7 +32,6 @@ export class StButtonDemoComponent {
 
    public onChangeOption(option: string): void {
       this.active = option;
-      console.log(option);
    }
 
    public test1(): void {
