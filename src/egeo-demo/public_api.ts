@@ -11,6 +11,7 @@
 export { StAlertsDemoModule } from './st-alert-demo/st-alerts-demo.module';
 export { StBreadcrumbsDemoModule } from './st-breadcrumbs-demo/st-breadcrumbs-demo.module';
 export { StButtonDemoModule } from './st-button-demo/st-button-demo.module';
+export { StCheckboxDemoModule } from './st-checkbox-demo/st-checkbox-demo.module';
 export { StDropdownDemoModule } from './st-dropdown-demo/st-dropdown-demo.module';
 export { StDropdownMenuDemoModule } from './st-dropdown-menu-demo/st-dropdown-menu-demo.module';
 export { StFormDemoModule } from './st-form-demo/st-form-demo.module';
