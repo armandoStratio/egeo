@@ -58,7 +58,7 @@ module.exports = function(config) {
             ]
          },
          coverageOptions: {
-            exclude: /(\.d|\.spec|\.module|\.routing|barrels|public_api)\.ts/i,
+            exclude: /(\.d|\.spec|\.module|\.routing|index|barrels|public_api)\.ts/i,
             instrumentation: true
          },
          reports: {

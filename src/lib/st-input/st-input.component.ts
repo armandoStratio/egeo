@@ -154,10 +154,6 @@ export class StInputComponent implements ControlValueAccessor, OnChanges, OnInit
    }
 
    /** Style functions */
-   getBarType(): string {
-      return this.showError() ? 'st-input-error-bar sth-input-error-bar' : 'st-input-normal-bar sth-input-normal-bar';
-   }
-
    onFocus(event: Event): void {
       this.focus = true;
    }

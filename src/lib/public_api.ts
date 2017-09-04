@@ -228,3 +228,7 @@ export { StPopModule } from './st-pop/st-pop.module';
 
 // Utils
 export { StDemoGeneratorModule } from './utils/demo-generator/demo-generator.module';
+
+
+/**************************** FULL MODULES *********************************************/
+export * from './st-label/index';

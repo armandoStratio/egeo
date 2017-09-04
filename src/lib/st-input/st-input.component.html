@@ -21,11 +21,9 @@
       </label>
 
       <input #input (focus)="onFocus($event)" (focusout)="onFocusOut($event)" (blur)="onFocusOut($event)" [formControl]="internalControl"
-         class="st-input-remove-default sth-input-remove-default" [ngClass]="{disabled: isDisabled}" [placeholder]="placeholder"
+         class="st-input-remove-default st-form-control" [ngClass]="{disabled: isDisabled}" [placeholder]="placeholder"
          [name]="name" [attr.type]="fieldType" [attr.id]="qaTag" [attr.maxlength]="maxLength" [attr.min]="min" [attr.max]="max"
          [value]="value" [readonly]="readonly">
-
-      <span class="st-input-bar" [ngClass]="getBarType()"></span>
    </div>
    <div class="st-input-error-layout" *ngIf="showError()">
       <span class="st-input-error-message sth-input-error-message">{{errorMessage}}</span>

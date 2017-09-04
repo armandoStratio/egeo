@@ -1,4 +1,4 @@
-/**
+/*
  * © 2017 Stratio Big Data Inc., Sucursal en España.
  *
  * This software is licensed under the Apache License, Version 2.0.
@@ -8,24 +8,5 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-
-.st-input-container {
-   position: relative;
-}
-
-.st-input-container :invalid {
-   box-shadow: none;
-}
-
-.st-input-container .st-input-title {
-   display: block;
-   float: left;
-   padding: 0;
-   position: relative;
-   width: 100%;
-}
-
-.st-input {
-   width: 100%;
-   padding-bottom: 6px;
-}
+export * from './st-label.component';
+export * from './st-label.module';

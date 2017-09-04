@@ -20,9 +20,8 @@
          <span *ngIf="!contextualHelp">{{label}}</span>
       </label>
       <textarea #textarea (focus)="onFocus($event)" (focusout)="onFocusOut($event)" (blur)="onFocusOut($event)" [formControl]="internalControl"
-         class="st-textarea-remove-default sth-textarea-remove-default" [ngClass]="{disabled: isDisabled}"
+         class="st-textarea-remove-default st-form-control" [ngClass]="{disabled: isDisabled}"
          [placeholder]="placeholder" [name]="name" [cols]="cols" [rows]="rows" [wrap]="wrap" [attr.maxlength]="maxLength" [attr.id]="qaTag"></textarea>
-      <span class="st-textarea-bar" [ngClass]="getBarType()"></span>
    </div>
    <div class="st-textarea-error-layout">
       <div *ngIf="showError()">

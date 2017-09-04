@@ -1,4 +1,4 @@
-/**
+/*
  * © 2017 Stratio Big Data Inc., Sucursal en España.
  *
  * This software is licensed under the Apache License, Version 2.0.
@@ -8,24 +8,19 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-.st-input-container {
-   position: relative;
-}
+import { StLabelComponent } from './st-label.component';
+import { StTooltipModule } from '../st-tooltip/st-tooltip.module';
 
-.st-input-container :invalid {
-   box-shadow: none;
-}
+@NgModule({
+   declarations: [StLabelComponent],
+   exports: [StLabelComponent],
+   imports: [
+      CommonModule,
+      StTooltipModule
+   ]
+})
 
-.st-input-container .st-input-title {
-   display: block;
-   float: left;
-   padding: 0;
-   position: relative;
-   width: 100%;
-}
-
-.st-input {
-   width: 100%;
-   padding-bottom: 6px;
-}
+export class StLabelModule { }

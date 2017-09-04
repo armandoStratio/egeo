@@ -6,6 +6,10 @@
 
 * Update license
 
+**New features:**
+
+* st-label: New component based on label native tag
+
 ## 3.0.0 (August 18, 2017)
 
 **Fixed bugs:**

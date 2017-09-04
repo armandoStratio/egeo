@@ -123,10 +123,6 @@ export class StTextareaComponent implements ControlValueAccessor, OnChanges, OnI
    }
 
    /** Style functions */
-   getBarType(): string {
-      return this.showError() ? 'st-textarea-error-bar sth-textarea-error' : 'st-textarea-normal-bar sth-textarea-normal-bar';
-   }
-
    onFocus(event: Event): void {
       this.focus = true;
    }

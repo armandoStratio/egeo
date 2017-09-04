@@ -1,0 +1,25 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-textarea name="Description" 
+   placeholder="Enter description" 
+   value="This is a description" 
+   label="Description"
+   contextualHelp="This is the contextual help of the components"
+   [cols]="50"
+   [rows]="3"></st-textarea>
+<div>
+    <textarea class="st-form-control"></textarea>
+</div>
+<form [formGroup]="myForm" novalidate>
+   <st-textarea formControlName="name" placeholder="Enter your name"></st-textarea>
+</form>
