@@ -5,6 +5,7 @@
 **Documentation:**
 
 * Update license
+* st-checkbox: added demo
 
 **New features:**
 
