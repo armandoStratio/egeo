@@ -23,6 +23,7 @@ export const routes: Routes = [
          { path: 'alerts-demo', loadChildren: '@stratio/egeo-demo#StAlertsDemoModule' },
          { path: 'breadcrumbs', loadChildren: '@stratio/egeo-demo#StBreadcrumbsDemoModule' },
          { path: 'button-demo', loadChildren: '@stratio/egeo-demo#StButtonDemoModule' },
+         { path: 'checkbox-demo', loadChildren: '@stratio/egeo-demo#StCheckboxDemoModule' },
          { path: 'dropdown-demo', loadChildren: '@stratio/egeo-demo#StDropdownDemoModule' },
          { path: 'dropdown-menu-demo', loadChildren: '@stratio/egeo-demo#StDropdownMenuDemoModule' },
          { path: 'form-demo', loadChildren: '@stratio/egeo-demo#StFormDemoModule' },

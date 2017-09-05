@@ -1,4 +1,4 @@
-/**
+/*
  * © 2017 Stratio Big Data Inc., Sucursal en España.
  *
  * This software is licensed under the Apache License, Version 2.0.
@@ -8,24 +8,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-.st-checkbox {
-  cursor: pointer;
+import { Component } from '@angular/core';
 
-  .label {
-    padding-left: 15px;
-  }
+@Component({
+   selector: 'st-checkbox-demo',
+   templateUrl: './st-checkbox-demo.component.html',
+   styleUrls: ['./st-checkbox-demo.component.scss']
+})
 
-  .custom-checkbox {
-    width: 15px;
-    height: 15px;
-    display: inline-block;
-    position: relative;
-    top: 2px;
-
-      &:before {
-        position: absolute;
-        top: -2px;
-        left: -1px;
-      }
-  }
-}
+export class StCheckboxDemoComponent {}

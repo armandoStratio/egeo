@@ -22,7 +22,6 @@ export const CHECKBOX_CONTROL_ACCESSOR: any = {
    selector: 'st-checkbox',
    templateUrl: './st-checkbox.component.html',
    providers: [CHECKBOX_CONTROL_ACCESSOR],
-   styleUrls: ['./st-checkbox.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
