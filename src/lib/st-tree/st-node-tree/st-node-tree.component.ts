@@ -104,16 +104,12 @@ export class StNodeTreeComponent implements OnInit, OnChanges, OnDestroy {
    }
 
    onClickForSelect(event: Event): void {
-      event.stopImmediatePropagation();
-      this.node.expanded = !this.node.expanded;
       this.node.selected = true;
       let changeEvent: StNodeTreeChange = { node: this.node, path: this.getPath() };
-      this.toogleNode.emit(changeEvent);
       this.selectNode.emit(changeEvent);
    }
 
    onToogleNode(event: Event): void {
-      event.stopImmediatePropagation();
       this.node.expanded = !this.node.expanded;
       this.toogleNode.emit({ node: this.node, path: this.getPath() });
    }

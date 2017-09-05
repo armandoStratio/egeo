@@ -13,16 +13,8 @@
 <div>
    <st-tree-node-expand *ngIf="!isRoot" [type]="'root'" (click)="navigatePrevious.emit($event)"></st-tree-node-expand>
    <div [ngClass]="{'tree-partial': !isRoot}">
-      <st-node-tree
-         [father]="fatherNode"
-         [node]="internalTree"
-         [pos]="0"
-         [maxLevel]="maxLevel"
-         [selectedPath]="selectedPath"
-         [changeStreamNotification]="changeStreamNotification"
-         (internalNodeUpdate)="onInternalNodeUpdate($event)"
-         (toogleNode)="onToogleNode($event)"
-         (selectNode)="onSelectNode($event)">
+      <st-node-tree [father]="fatherNode" [node]="tree" [pos]="0" [maxLevel]="maxLevel" [selectedPath]="selectedPath" [changeStreamNotification]="changeStreamNotification"
+         (internalNodeUpdate)="onInternalNodeUpdate($event)" (toogleNode)="onToogleNode($event)" (selectNode)="onSelectNode($event)">
       </st-node-tree>
    </div>
 </div>

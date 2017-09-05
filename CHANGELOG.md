@@ -10,6 +10,14 @@
 
 * st-label: New component based on label native tag
 
+## 3.0.1 (September 01, 2017)
+
+**Fixed bugs:**
+
+* st-tree: Fix Failed to insert St-Tree Module provider missing
+* st-tree: Fix selected from elements
+* st-tree: Fix dbblick to elements for expand
+
 ## 3.0.0 (August 18, 2017)
 
 **Fixed bugs:**

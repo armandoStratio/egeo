@@ -91,9 +91,7 @@ describe('StTreeComponent', () => {
       expect(comp.isRoot).toBeTruthy();
 
       // Tree and mockTree are the same, internalTree its equal but not the same
-      expect(comp.internalTree).toEqual(mockTree);
-      expect(comp.tree).toBe(mockTree);
-      expect(comp.internalTree).not.toBe(mockTree);
+      expect(comp.tree).toEqual(mockTree);
    });
 
    it('should change tree structure and reflect change', () => {
@@ -101,31 +99,15 @@ describe('StTreeComponent', () => {
       fixture.detectChanges();
 
       // Tree and mockTree are the same, internalTree its equal but not the same
-      expect(comp.internalTree).toEqual(mockTree);
+      expect((comp as any)._tree).toEqual(mockTree);
       expect(comp.tree).toBe(mockTree);
-      expect(comp.internalTree).not.toBe(mockTree);
 
       let newTree: StNodeTree = { name: 'hdfs', icon: 'icon-folder' };
       let changes: SimpleChanges = { tree: new SimpleChange(mockTree, newTree, false) };
       comp.tree = newTree;
       comp.ngOnChanges(changes);
 
-      // Tree and mockTree are the same, internalTree its equal but not the same
-      expect(comp.internalTree).not.toEqual(mockTree);
-      expect(comp.internalTree).toEqual(newTree);
-      // Pased its the new tree now
-      expect(comp.tree).not.toBe(mockTree);
-      expect(comp.tree).toBe(newTree);
-      // Its a copy
-      expect(comp.internalTree).not.toBe(mockTree);
-      expect(comp.internalTree).not.toBe(newTree);
-
-      comp.ngOnChanges({});
-      expect(comp.internalTree).toEqual(newTree);
-
-      comp.internalTree = _cloneDeep(newTree);
-      comp.ngOnChanges(changes);
-      expect(comp.internalTree).toEqual(newTree);
+      expect((comp as any)._tree).toEqual(newTree);
    });
 
 
@@ -137,13 +119,13 @@ describe('StTreeComponent', () => {
 
       let responseFunction = jasmine.createSpy('response');
       comp.toogleNode.subscribe(responseFunction);
-      let nodeToSend: StNodeTree = comp.internalTree.children[0];
+      let nodeToSend: StNodeTree = (comp as any)._tree.children[0];
       nodeToSend.expanded = false;
       let change: StNodeTreeChange = { node: nodeToSend, path: 'children[0]' };
 
       comp.onToogleNode(change);
 
-      expect(comp.internalTree.children[0].expanded).toBeFalsy();
+      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
       expect(responseFunction).toHaveBeenCalled();
       expect(responseFunction).toHaveBeenCalledWith(change);
 
@@ -158,13 +140,13 @@ describe('StTreeComponent', () => {
 
       let responseFunction = jasmine.createSpy('response');
       comp.toogleNode.subscribe(responseFunction);
-      let nodeToSend: StNodeTree = comp.internalTree.children[0];
+      let nodeToSend: StNodeTree = (comp as any)._tree.children[0];
       nodeToSend.expanded = false;
       let change: StNodeTreeChange = { node: nodeToSend, path: 'children[0]' };
 
       comp.onToogleNode(change);
 
-      expect(comp.internalTree.children[0].expanded).toBeFalsy();
+      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
       expect(responseFunction).toHaveBeenCalled();
       expect(responseFunction).toHaveBeenCalledTimes(1);
       expect(responseFunction).toHaveBeenCalledWith(change);
@@ -180,15 +162,15 @@ describe('StTreeComponent', () => {
 
       let responseFunction = jasmine.createSpy('response');
       comp.toogleNode.subscribe(responseFunction);
-      let nodeToSend: StNodeTree = comp.internalTree;
+      let nodeToSend: StNodeTree = (comp as any)._tree;
       nodeToSend.expanded = false;
       let change: StNodeTreeChange = { node: nodeToSend, path: '' };
 
       comp.onToogleNode(change);
 
-      expect(comp.internalTree.expanded).toBeFalsy();
-      expect(comp.internalTree.children[0].expanded).toBeFalsy();
-      expect(comp.internalTree.children[0].children[0].expanded).toBeFalsy();
+      expect((comp as any)._tree.expanded).toBeFalsy();
+      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
+      expect((comp as any)._tree.children[0].children[0].expanded).toBeFalsy();
       expect(responseFunction).toHaveBeenCalled();
       expect(responseFunction).toHaveBeenCalledTimes(3);
       expect(responseFunction).toHaveBeenCalledWith(change);
@@ -204,13 +186,13 @@ describe('StTreeComponent', () => {
 
       let responseFunction = jasmine.createSpy('response');
       comp.toogleNode.subscribe(responseFunction);
-      let nodeToSend: StNodeTree = comp.internalTree.children[0];
+      let nodeToSend: StNodeTree = (comp as any)._tree.children[0];
       nodeToSend.expanded = false;
       let change: StNodeTreeChange = { node: nodeToSend, path: 'children[0]' };
 
       comp.onToogleNode(change);
 
-      expect(comp.internalTree.children[0].expanded).toBeFalsy();
+      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
       expect(responseFunction).toHaveBeenCalled();
       expect(responseFunction).toHaveBeenCalledWith(change);
 
@@ -225,13 +207,13 @@ describe('StTreeComponent', () => {
 
       let responseFunction = jasmine.createSpy('response');
       comp.toogleNode.subscribe(responseFunction);
-      let nodeToSend: StNodeTree = comp.internalTree.children[0];
+      let nodeToSend: StNodeTree = (comp as any)._tree.children[0];
       nodeToSend.expanded = false;
       let change: StNodeTreeChange = { node: nodeToSend, path: 'children[0]' };
 
       comp.onToogleNode(change);
 
-      expect(comp.internalTree.children[0].expanded).toBeFalsy();
+      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
       expect(responseFunction).toHaveBeenCalled();
       expect(responseFunction).toHaveBeenCalledTimes(1);
       expect(responseFunction).toHaveBeenCalledWith(change);
@@ -247,14 +229,14 @@ describe('StTreeComponent', () => {
 
       let responseFunction = jasmine.createSpy('response');
       comp.toogleNode.subscribe(responseFunction);
-      let nodeToSend: StNodeTree = comp.internalTree.children[0];
+      let nodeToSend: StNodeTree = (comp as any)._tree.children[0];
       nodeToSend.expanded = false;
       let change: StNodeTreeChange = { node: nodeToSend, path: 'children[0]' };
 
       comp.onToogleNode(change);
 
-      expect(comp.internalTree.children[0].expanded).toBeFalsy();
-      expect(comp.internalTree.children[0].children[0].expanded).toBeTruthy();
+      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
+      expect((comp as any)._tree.children[0].children[0].expanded).toBeTruthy();
       expect(responseFunction).toHaveBeenCalled();
       expect(responseFunction).toHaveBeenCalledTimes(1);
       expect(responseFunction).toHaveBeenCalledWith(change);
@@ -268,7 +250,7 @@ describe('StTreeComponent', () => {
       let responseFunction = jasmine.createSpy('response');
       comp.selectNode.subscribe(responseFunction);
 
-      let change: StNodeTreeChange = { node: comp.internalTree, path: '' };
+      let change: StNodeTreeChange = { node: (comp as any)._tree, path: '' };
 
       comp.onSelectNode(change);
 
@@ -289,9 +271,9 @@ describe('StTreeComponent', () => {
       comp.expandFatherBranch = true;
       fixture.detectChanges();
 
-      expect(comp.internalTree.expanded).toBeTruthy();
-      expect(comp.internalTree.children[0].expanded).toBeTruthy();
-      expect(comp.internalTree.children[0].children[0].expanded).toBeTruthy();
+      expect((comp as any)._tree.expanded).toBeTruthy();
+      expect((comp as any)._tree.children[0].expanded).toBeTruthy();
+      expect((comp as any)._tree.children[0].children[0].expanded).toBeTruthy();
       expect(responseFunction).toHaveBeenCalled();
       expect(responseFunction).toHaveBeenCalledTimes(2);
    });
@@ -306,8 +288,8 @@ describe('StTreeComponent', () => {
       comp.expandFatherBranch = true;
       fixture.detectChanges();
 
-      expect(comp.internalTree.expanded).toBeTruthy();
-      expect(comp.internalTree.children[0].expanded).toBeTruthy();
+      expect((comp as any)._tree.expanded).toBeTruthy();
+      expect((comp as any)._tree.children[0].expanded).toBeTruthy();
       expect(responseFunction).toHaveBeenCalled();
       expect(responseFunction).toHaveBeenCalledTimes(1);
 
@@ -323,7 +305,7 @@ describe('StTreeComponent', () => {
       comp.expandFatherBranch = true;
       fixture.detectChanges();
 
-      expect(comp.internalTree.expanded).toBeTruthy();
+      expect((comp as any)._tree.expanded).toBeTruthy();
       expect(responseFunction).not.toHaveBeenCalled();
       expect(responseFunction).toHaveBeenCalledTimes(0);
    });
@@ -338,9 +320,9 @@ describe('StTreeComponent', () => {
       comp.expandFatherBranch = false;
       fixture.detectChanges();
 
-      expect(comp.internalTree.expanded).toBeFalsy();
-      expect(comp.internalTree.children[0].expanded).toBeFalsy();
-      expect(comp.internalTree.children[0].children[0].expanded).toBeTruthy();
+      expect((comp as any)._tree.expanded).toBeFalsy();
+      expect((comp as any)._tree.children[0].expanded).toBeFalsy();
+      expect((comp as any)._tree.children[0].children[0].expanded).toBeTruthy();
       expect(responseFunction).not.toHaveBeenCalled();
    });
 
@@ -354,8 +336,8 @@ describe('StTreeComponent', () => {
       comp.expandFatherBranch = false;
       fixture.detectChanges();
 
-      expect(comp.internalTree.expanded).toBeFalsy();
-      expect(comp.internalTree.children[0].expanded).toBeTruthy();
+      expect((comp as any)._tree.expanded).toBeFalsy();
+      expect((comp as any)._tree.children[0].expanded).toBeTruthy();
       expect(responseFunction).not.toHaveBeenCalled();
 
    });
@@ -370,7 +352,7 @@ describe('StTreeComponent', () => {
       comp.expandFatherBranch = false;
       fixture.detectChanges();
 
-      expect(comp.internalTree.expanded).toBeTruthy();
+      expect((comp as any)._tree.expanded).toBeTruthy();
       expect(responseFunction).not.toHaveBeenCalled();
    });
 
@@ -380,9 +362,11 @@ describe('StTreeComponent', () => {
          name: 'name', icon: '', expanded: true, children: [
             {
                name: 'child1', icon: '', expanded: false, children: [
-                  { name: 'child1.1', icon: '', expanded: false, children: [
-                     { name: 'child1.1.1', icon: '', expanded: true }
-                  ] }
+                  {
+                     name: 'child1.1', icon: '', expanded: false, children: [
+                        { name: 'child1.1.1', icon: '', expanded: true }
+                     ]
+                  }
                ]
             }
          ]
@@ -394,23 +378,25 @@ describe('StTreeComponent', () => {
       comp.expandFatherBranch = true;
       fixture.detectChanges();
 
-      expect(comp.internalTree.expanded).toBeTruthy();
-      expect(comp.internalTree.children[0].expanded).toBeTruthy();
-      expect(comp.internalTree.children[0].children[0].expanded).toBeTruthy();
-      expect(comp.internalTree.children[0].children[0].children[0].expanded).toBeTruthy();
-      expect(comp.internalTree.children[0].children[0].children[0].children[0].expanded).toBeTruthy();
+      expect((comp as any)._tree.expanded).toBeTruthy();
+      expect((comp as any)._tree.children[0].expanded).toBeTruthy();
+      expect((comp as any)._tree.children[0].children[0].expanded).toBeTruthy();
+      expect((comp as any)._tree.children[0].children[0].children[0].expanded).toBeTruthy();
+      expect((comp as any)._tree.children[0].children[0].children[0].children[0].expanded).toBeTruthy();
       expect(responseFunction).toHaveBeenCalled();
       expect(responseFunction).toHaveBeenCalledTimes(3);
    });
 
-    it('should collapse deep node with two levels childs expanded and collapseChildsBranch true', () => {
-       let node: StNodeTree = {
+   it('should collapse deep node with two levels childs expanded and collapseChildsBranch true', () => {
+      let node: StNodeTree = {
          name: 'name', icon: '', expanded: true, children: [
             {
                name: 'child1', icon: '', expanded: false, children: [
-                  { name: 'child1.1', icon: '', expanded: true, children: [
-                     { name: 'child1.1.1', icon: '', expanded: false }
-                  ] }
+                  {
+                     name: 'child1.1', icon: '', expanded: true, children: [
+                        { name: 'child1.1.1', icon: '', expanded: false }
+                     ]
+                  }
                ]
             }
          ]
@@ -422,17 +408,17 @@ describe('StTreeComponent', () => {
 
       let responseFunction = jasmine.createSpy('response');
       comp.toogleNode.subscribe(responseFunction);
-      let nodeToSend: StNodeTree = comp.internalTree.children[0].children[0];
+      let nodeToSend: StNodeTree = (comp as any)._tree.children[0].children[0];
       nodeToSend.expanded = false;
       let change: StNodeTreeChange = { node: nodeToSend, path: 'children[0].children[0]' };
 
       comp.onToogleNode(change);
 
-      expect(comp.internalTree.expanded).toBeTruthy();
-      expect(comp.internalTree.children[0].expanded).toBeTruthy();
-      expect(comp.internalTree.children[0].children[0].expanded).toBeFalsy();
-      expect(comp.internalTree.children[0].children[0].children[0].expanded).toBeFalsy();
-      expect(comp.internalTree.children[0].children[0].children[0].children[0].expanded).toBeFalsy();
+      expect((comp as any)._tree.expanded).toBeTruthy();
+      expect((comp as any)._tree.children[0].expanded).toBeTruthy();
+      expect((comp as any)._tree.children[0].children[0].expanded).toBeFalsy();
+      expect((comp as any)._tree.children[0].children[0].children[0].expanded).toBeFalsy();
+      expect((comp as any)._tree.children[0].children[0].children[0].children[0].expanded).toBeFalsy();
       expect(responseFunction).toHaveBeenCalled();
       expect(responseFunction).toHaveBeenCalledTimes(2);
 
@@ -440,21 +426,21 @@ describe('StTreeComponent', () => {
    });
 
    it('should update when internal node update event', () => {
-      let node: StNodeTree = { name: 'name', icon: '', expanded: true};
+      let node: StNodeTree = { name: 'name', icon: '', expanded: true };
       comp.tree = { name: 'root', icon: '', expanded: true, children: [node] };
       comp.collapseChildsBranch = false;
       comp.expandFatherBranch = false;
       fixture.detectChanges();
 
-      let nodeToSend: StNodeTree = _cloneDeep(comp.internalTree.children[0]);
+      let nodeToSend: StNodeTree = _cloneDeep((comp as any)._tree.children[0]);
       let newName: string = 'New node name';
       nodeToSend.name = newName;
       let change: StNodeTreeChange = { node: nodeToSend, path: 'children[0]' };
 
-      expect(comp.internalTree.children[0].name).toEqual(node.name);
+      expect((comp as any)._tree.children[0].name).toEqual(node.name);
       comp.onInternalNodeUpdate(change);
 
-      expect(comp.internalTree.children[0].name).toEqual(newName);
+      expect((comp as any)._tree.children[0].name).toEqual(newName);
    });
 
    it('should emit a navigate previous event', () => {

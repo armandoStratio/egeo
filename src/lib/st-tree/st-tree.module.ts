@@ -15,9 +15,12 @@ import { StTreeComponent } from './st-tree.component';
 import { StNodeTreeComponent } from './st-node-tree/st-node-tree.component';
 import { StTreeNodeExpandComponent } from './st-tree-node-expand/st-tree-node-expand.component';
 
+import { EgeoResolveService } from '../utils/egeo-resolver/egeo-resolve.service';
+
 @NgModule({
    imports: [CommonModule],
    declarations: [StTreeComponent, StNodeTreeComponent, StTreeNodeExpandComponent],
-   exports: [StTreeComponent]
+   exports: [StTreeComponent],
+   providers: [EgeoResolveService]
 })
 export class StTreeModule { }

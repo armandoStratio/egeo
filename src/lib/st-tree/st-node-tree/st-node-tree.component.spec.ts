@@ -195,63 +195,48 @@ describe('StTreeComponent', () => {
 
 
       it('should emit when click on select a node for a internal node', () => {
-         let onToogleFunction = jasmine.createSpy('response');
          let onSelectFunction = jasmine.createSpy('response');
-         comp.toogleNode.subscribe(onToogleFunction);
          comp.selectNode.subscribe(onSelectFunction);
          comp.father = [0, 1];
          comp.pos = 4;
          comp.node = { name: 'testNode', icon: '', expanded: false };
          fixture.detectChanges();
 
-         let expectedResult = { name: 'testNode', icon: '', expanded: true, selected: true };
+         let expectedResult = { name: 'testNode', icon: '', expanded: false, selected: true };
 
          comp.onClickForSelect(new Event('click'));
-         expect(onToogleFunction).toHaveBeenCalled();
-         expect(onToogleFunction).toHaveBeenCalledTimes(1);
-         expect(onToogleFunction).toHaveBeenCalledWith({ node: expectedResult, path: 'children[1].children[4]' });
          expect(onSelectFunction).toHaveBeenCalled();
          expect(onSelectFunction).toHaveBeenCalledTimes(1);
          expect(onSelectFunction).toHaveBeenCalledWith({ node: expectedResult, path: 'children[1].children[4]' });
       });
 
       it('should emit when click on select a node for a child from root node', () => {
-         let onToogleFunction = jasmine.createSpy('response');
          let onSelectFunction = jasmine.createSpy('response');
-         comp.toogleNode.subscribe(onToogleFunction);
          comp.selectNode.subscribe(onSelectFunction);
          comp.father = [0];
          comp.pos = 4;
          comp.node = { name: 'testNode', icon: '', expanded: false };
          fixture.detectChanges();
 
-         let expectedResult = { name: 'testNode', icon: '', expanded: true, selected: true };
+         let expectedResult = { name: 'testNode', icon: '', expanded: false, selected: true };
 
          comp.onClickForSelect(new Event('click'));
-         expect(onToogleFunction).toHaveBeenCalled();
-         expect(onToogleFunction).toHaveBeenCalledTimes(1);
-         expect(onToogleFunction).toHaveBeenCalledWith({ node: expectedResult, path: 'children[4]' });
          expect(onSelectFunction).toHaveBeenCalled();
          expect(onSelectFunction).toHaveBeenCalledTimes(1);
          expect(onSelectFunction).toHaveBeenCalledWith({ node: expectedResult, path: 'children[4]' });
       });
 
       it('should emit when click on select a node for root node', () => {
-         let onToogleFunction = jasmine.createSpy('response');
          let onSelectFunction = jasmine.createSpy('response');
-         comp.toogleNode.subscribe(onToogleFunction);
          comp.selectNode.subscribe(onSelectFunction);
          comp.father = [];
          comp.pos = 0;
          comp.node = { name: 'testNode', icon: '', expanded: false };
          fixture.detectChanges();
 
-         let expectedResult = { name: 'testNode', icon: '', expanded: true, selected: true };
+         let expectedResult = { name: 'testNode', icon: '', expanded: false, selected: true };
 
          comp.onClickForSelect(new Event('click'));
-         expect(onToogleFunction).toHaveBeenCalled();
-         expect(onToogleFunction).toHaveBeenCalledTimes(1);
-         expect(onToogleFunction).toHaveBeenCalledWith({ node: expectedResult, path: '' });
          expect(onSelectFunction).toHaveBeenCalled();
          expect(onSelectFunction).toHaveBeenCalledTimes(1);
          expect(onSelectFunction).toHaveBeenCalledWith({ node: expectedResult, path: '' });
@@ -267,8 +252,8 @@ describe('StTreeComponent', () => {
          fixture.detectChanges();
 
          expect(comp.node.name).toEqual('test');
-         let newNode: StNodeTree = {name: 'new value', icon: ''};
-         subject.next({node: newNode, path: 'children[1]'});
+         let newNode: StNodeTree = { name: 'new value', icon: '' };
+         subject.next({ node: newNode, path: 'children[1]' });
          fixture.detectChanges();
 
          expect(comp.node.name).toEqual('new value');
@@ -284,8 +269,8 @@ describe('StTreeComponent', () => {
          fixture.detectChanges();
 
          expect(comp.node.name).toEqual('test');
-         let newNode: StNodeTree = {name: 'new value', icon: ''};
-         subject.next({node: newNode, path: 'children[5]'});
+         let newNode: StNodeTree = { name: 'new value', icon: '' };
+         subject.next({ node: newNode, path: 'children[5]' });
          fixture.detectChanges();
 
          expect(comp.node.name).toEqual('test');
@@ -304,11 +289,11 @@ describe('StTreeComponent', () => {
          expect(comp.node.name).toEqual('test');
 
          comp.changeStreamNotification = subject2;
-         comp.ngOnChanges({changeStreamNotification: new SimpleChange(subject1, subject2, true)});
+         comp.ngOnChanges({ changeStreamNotification: new SimpleChange(subject1, subject2, true) });
          fixture.detectChanges();
 
-         let newNode: StNodeTree = {name: 'new value', icon: ''};
-         subject2.next({node: newNode, path: 'children[1]'});
+         let newNode: StNodeTree = { name: 'new value', icon: '' };
+         subject2.next({ node: newNode, path: 'children[1]' });
          fixture.detectChanges();
 
          expect(comp.node.name).toEqual('new value');
