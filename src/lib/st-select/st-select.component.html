@@ -10,7 +10,7 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<div class="st-select" [attr.id]='qaTag'>
+<div class="st-select" [attr.id]='qaTag'  [ngClass]="{disabled: disabled}">
 
    <label st-label name="name" [attr.id]="qaTag + '-label'" [tooltip]="tooltip">
       {{label}}
