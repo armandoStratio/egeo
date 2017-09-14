@@ -11,7 +11,7 @@
 import { Component, ElementRef, Input } from '@angular/core';
 
 @Component({
-   host: {class: 'sth-label'},
+   host: {class: 'st-label'},
    selector: '[st-label]',
    styleUrls: ['./st-label.component.scss'],
    templateUrl: './st-label.component.html'

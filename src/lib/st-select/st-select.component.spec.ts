@@ -14,7 +14,6 @@ import { FormControl, FormsModule, NgControl, ReactiveFormsModule, Validators } 
 import { By } from '@angular/platform-browser';
 
 import { StFormLabelModule } from '../utils/egeo-form/st-form-label/st-form-label.module';
-import { StFormLabelStatus } from '../utils/egeo-form/st-form-label/st-form-label-status.enum';
 import { StDropdownMenuModule } from '../st-dropdown-menu/st-dropdown-menu.module';
 import { StSelectComponent } from './st-select.component';
 
@@ -191,29 +190,6 @@ describe('StSelect', () => {
       expect(component.onClickButton).toHaveBeenCalledTimes(1);
       expect(component.isActive).toBeTruthy();
    });
-
-   it('st-select should change between normal and disable StFormLabelStatus', () => {
-      component.options = options;
-      fixture.detectChanges();
-      expect(component.getLabelStatus()).toEqual(StFormLabelStatus.FOCUS);
-
-      component.setDisabledState(true);
-      fixture.detectChanges();
-      expect(component.getLabelStatus()).toEqual(StFormLabelStatus.DISABLED);
-   });
-
-   it('st-select should change between error and disable StFormLabelStatus', () => {
-      spyOn(component, 'showError').and.returnValue(true);
-      component.options = options;
-      fixture.detectChanges();
-
-      expect(component.getLabelStatus()).toEqual(StFormLabelStatus.ERROR);
-
-      component.setDisabledState(true);
-      fixture.detectChanges();
-      expect(component.getLabelStatus()).toEqual(StFormLabelStatus.DISABLED);
-   });
-
 
    it('st-select should return error only in certain cases', () => {
       component.options = options;

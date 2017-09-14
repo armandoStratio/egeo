@@ -10,8 +10,12 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<div class="st-select sth-select">
-   <st-form-label [label]="label" [qaTag]="qaTag + '-label'" [contextualHelp]="contextualHelp" [status]="getLabelStatus()" [name]="name"></st-form-label>
+<div class="st-select" [attr.id]='qaTag'>
+
+   <label st-label name="name" [attr.id]="qaTag + '-label'" [tooltip]="tooltip">
+      {{label}}
+   </label>
+
    <st-dropdown-menu [items]="options" [attr.id]="qaTag + 'menu'" (change)="changeOption($event)" [active]="isActive" class="combo-menu"
        [placement]="'top-start'">
       <div class="st-input-container sth-input-container" [ngClass]="{disabled: disabled, error: showError(), active: isActive}" (click)="onClickButton($event)" #buttonId>

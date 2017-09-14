@@ -30,7 +30,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { EventWindowManager } from '../utils/event-window-manager';
 import { StDropDownMenuItem } from '../st-dropdown-menu/st-dropdown-menu.interface';
 import { StEgeo, StRequired } from '../decorators/require-decorators';
-import { StFormLabelStatus } from '../utils/egeo-form/st-form-label/st-form-label-status.enum';
 
 @StEgeo()
 @Component({
@@ -44,15 +43,15 @@ import { StFormLabelStatus } from '../utils/egeo-form/st-form-label/st-form-labe
    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StSelectComponent extends EventWindowManager implements ControlValueAccessor, OnDestroy, OnChanges {
-   @Input() public qaTag: string;
-   @Input() public name: string = '';
-   @Input() public options: StDropDownMenuItem[] = [];
    @Input() public label: string = '';
-   @Input() public contextualHelp: string = '';
+   @Input() public qaTag: string;
+   @Input() public tooltip: string;
+   @Input() public name: string = '';
    @Input() public placeholder: string = '';
+   @Input() public errorRequiredMessage: string = '';
+   @Input() public options: StDropDownMenuItem[] = [];
    @Input() public disabled: boolean = false;
    @Input() public selectedValue: StDropDownMenuItem;
-   @Input() public errorRequiredMessage: string = '';
    @Input() public forceValidations: boolean = false;
 
    public errorMessage: string = undefined;
@@ -132,13 +131,15 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
       }
    }
 
-   getLabelStatus(): StFormLabelStatus {
-      if (this.disabled) {
-         return StFormLabelStatus.DISABLED;
-      } else if (this.showError()) {
-         return StFormLabelStatus.ERROR;
-      }
-      return StFormLabelStatus.FOCUS;
+   getLabelStatus(): void {
+      console.log('>>>>>>>>>>>>>>>>>>>' );
+
+      // if (this.disabled) {
+      //    return StLabelStatus.DISABLED;
+      // } else if (this.showError()) {
+      //    return StLabelStatus.ERROR;
+      // }
+      // return StLabelStatus.FOCUS;
    }
 
    showError(): boolean {

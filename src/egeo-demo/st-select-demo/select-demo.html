@@ -16,13 +16,14 @@
       <div class="form-group">
 
          <st-select
+            label="Label text 1"
             [options]="options"
             qaTag="combo-option1-template-example"
-            label="Label 1"
+            tooltip="Select option from list"
             name="option1-template"
-            contextualHelp="Select option from list"
             placeholder="Select option"
             [errorRequiredMessage]="errorMessage"
+
             [forceValidations]="forceValidations"
             [(ngModel)]="model.option1"
             required
@@ -30,7 +31,7 @@
 
          <div class="separator"></div>
 
-         <st-select
+         <!-- <st-select
             [options]="options"
             qaTag="combo-option2-template-example"
             label="Label 2"
@@ -41,7 +42,7 @@
             [forceValidations]="forceValidations"
             [(ngModel)]="model.option2"
             disabled
-         ></st-select>
+         ></st-select> -->
 
       </div>
 
@@ -66,7 +67,7 @@
    <form [formGroup]="reactiveForm" novalidate autocomplete="off" class="col-md-3">
       <div class="form-group">
 
-         <st-select
+         <!-- <st-select
             [options]="options"
             qaTag="combo-option1-template-example"
             label="Option 1" name="option1"
@@ -75,11 +76,11 @@
             [errorRequiredMessage]="errorMessage"
             [forceValidations]="forceValidations"
             formControlName="option1"
-         ></st-select>
+         ></st-select> -->
 
          <div class="separator"></div>
 
-         <st-select
+         <!-- <st-select
             [options]="options"
             qaTag="combo-option2-template-example"
             label="Option 2"
@@ -88,7 +89,7 @@
             [errorRequiredMessage]="errorMessage"
             [forceValidations]="forceValidations"
             formControlName="option2"
-         ></st-select>
+         ></st-select> -->
 
       </div>
 

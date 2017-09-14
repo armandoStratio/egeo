@@ -45,15 +45,17 @@
 
 /// STYLES:
 .st-select {
-   .sth-form-label {
-      @extend %select-label-default;
 
-      &.active {
-         color: $action-primary-default;
-      }
+   .st-label {
+      display: flex;
+      position: relative;
 
-      &.disabled {
-         opacity: 1;
+      .content{
+         @extend %select-label-default;
+
+         &.active {
+            color: $action-primary-default;
+         }
       }
    }
 
@@ -90,7 +92,8 @@
 
          .st-input-remove-default {
             @extend %select-input-default;
-            padding: 8px 15px;
+            padding: 8px 40px 8px 15px;
+            width: 100%;
          }
 
          .arrow {

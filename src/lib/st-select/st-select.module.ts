@@ -12,12 +12,12 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { StFormLabelModule } from '../utils/egeo-form/st-form-label/st-form-label.module';
+import { StLabelModule } from '../st-label/st-label.module';
 import { StDropdownMenuModule } from '../st-dropdown-menu/st-dropdown-menu.module';
 import { StSelectComponent } from './st-select.component';
 
 @NgModule({
-   imports: [CommonModule, FormsModule, ReactiveFormsModule, StFormLabelModule, StDropdownMenuModule],
+   imports: [CommonModule, FormsModule, ReactiveFormsModule, StLabelModule, StDropdownMenuModule],
    declarations: [StSelectComponent],
    exports: [StSelectComponent]
 })
