@@ -49,7 +49,6 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
    @Input() public name: string = '';
    @Input() public placeholder: string = '';
    @Input() public errorRequiredMessage: string = '';
-   @Input() public status: string = '';
    @Input() public options: StDropDownMenuItem[] = [];
    @Input() public disabled: boolean = false;
    @Input() public selectedValue: StDropDownMenuItem;
