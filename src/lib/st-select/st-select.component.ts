@@ -57,9 +57,9 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
    public errorMessage: string = undefined;
    public onChange: (_: any) => void;
    public onTouched: () => void;
+   public isFocused: boolean = false;
 
    private sub: Subscription;
-   private isFocused: boolean = false;
    private pristine: boolean = true;
 
 
