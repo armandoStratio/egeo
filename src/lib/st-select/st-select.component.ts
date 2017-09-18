@@ -49,6 +49,7 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
    @Input() public name: string = '';
    @Input() public placeholder: string = '';
    @Input() public errorRequiredMessage: string = '';
+   @Input() public status: string = '';
    @Input() public options: StDropDownMenuItem[] = [];
    @Input() public disabled: boolean = false;
    @Input() public selectedValue: StDropDownMenuItem;
@@ -129,17 +130,6 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
          (this.inputElement.nativeElement as HTMLInputElement).focus();
          this.openElement();
       }
-   }
-
-   getLabelStatus(): void {
-      console.log('>>>>>>>>>>>>>>>>>>>' );
-
-      // if (this.disabled) {
-      //    return StLabelStatus.DISABLED;
-      // } else if (this.showError()) {
-      //    return StLabelStatus.ERROR;
-      // }
-      // return StLabelStatus.FOCUS;
    }
 
    showError(): boolean {

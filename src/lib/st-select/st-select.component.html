@@ -10,9 +10,9 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<div class="st-select" [attr.id]='qaTag'  [ngClass]="{disabled: disabled}">
+<div class="st-select" [attr.id]="qaTag">
 
-   <label st-label name="name" [attr.id]="qaTag + '-label'" [tooltip]="tooltip">
+   <label st-label [ngClass]="{error: showError(), active: isFocused, disabled: disabled}" name="name" [attr.id]="qaTag + '-label'" [tooltip]="tooltip">
       {{label}}
    </label>
 
@@ -25,6 +25,7 @@
          <span class="st-input-bar" [ngClass]="getBarType()"></span>
       </div>
    </st-dropdown-menu>
+
    <div class="st-input-error-layout" *ngIf="showError()">
       <span class="st-input-error-message sth-input-error-message">{{errorMessage}}</span>
    </div>

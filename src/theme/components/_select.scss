@@ -11,7 +11,7 @@
 
 /// tipography EXTENDS (@extend %button-label-regular;):
 %select-input-default {
-   color: $neutral-07;
+   color: $action-secondary-07;
    font-family: $egeo-nunito-sans;
    font-size: $egeo-font-size-xsmall;
    line-height: $egeo-line-height-xsmall;
@@ -27,12 +27,16 @@
    font-size: $egeo-font-size-xxsmall;
    line-height: $egeo-line-height-xsmall;
 
-   &.disabled {
-      color: $neutral-05;
-   }
-
    &.error {
       color: $status-critical-default;
+   }
+
+   &.active {
+      color: $action-primary-default;
+   }
+
+   &.disabled {
+      color: $neutral-06;
    }
 }
 
@@ -47,16 +51,9 @@
 .st-select {
 
    .st-label {
+      @extend %select-label-default;
       display: flex;
-      position: relative;
 
-      .content{
-         @extend %select-label-default;
-
-         &.active {
-            color: $action-primary-default;
-         }
-      }
    }
 
    .combo-menu {
