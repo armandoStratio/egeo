@@ -16,7 +16,7 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 
 // Component
 import { StModal } from './st-modal.component';
-import { StModalButton, StModalConfig, StModalMainTextSize, StModalResponse, StModalType, StModalWidth } from './st-modal.interface';
+import { StModalButton, StModalConfig, StModalMainTextSize, StModalResponse, StModalType, StModalWidth } from './st-modal.model';
 
 @Component({
    selector: 'st-modal-test',

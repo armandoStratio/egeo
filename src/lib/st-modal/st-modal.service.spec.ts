@@ -12,7 +12,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 // Component
-import { StModalButton, StModalConfig, StModalMainTextSize, StModalResponse, StModalType, StModalWidth } from './st-modal.interface';
+import { StModalButton, StModalConfig, StModalMainTextSize, StModalResponse, StModalType, StModalWidth } from './st-modal.model';
 import { StModalService } from './st-modal.service';
 
 @Component({ selector: 'st-modal-test', template: `<h1>Hello World</h1>` }) export class ModalTestComponent { }

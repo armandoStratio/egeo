@@ -15,7 +15,7 @@ export enum StModalWidth { COMPACT, REGULAR, LARGE }
 export enum StModalMainTextSize { BIG, MEDIUM }
 export enum StModalResponse { YES, NO, CLOSE }
 
-export interface StModalButton {
+export class StModalButton {
    icon?: string;
    iconLeft?: boolean;
    primary?: boolean;
@@ -23,7 +23,7 @@ export interface StModalButton {
    response: StModalResponse;
 }
 
-export interface StModalConfig {
+export class StModalConfig {
    contextualTitle?: string;
    modalTitle?: string;
    message?: string;

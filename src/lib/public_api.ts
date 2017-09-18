@@ -119,7 +119,7 @@ export {
    StModalResponse,
    StModalType,
    StModalWidth
-} from './st-modal/st-modal.interface';
+} from './st-modal/st-modal.model';
 export { StModalService } from './st-modal/st-modal.service';
 export { StModalModule } from './st-modal/st-modal.module';
 

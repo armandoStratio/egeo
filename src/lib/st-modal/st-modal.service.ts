@@ -21,7 +21,7 @@ import { Subject } from 'rxjs/Subject';
 
 /* local dependencies */
 import { StModal } from './st-modal.component';
-import { StModalButton, StModalConfig, StModalMainTextSize, StModalResponse, StModalType, StModalWidth } from './st-modal.interface';
+import { StModalButton, StModalConfig, StModalMainTextSize, StModalResponse, StModalType, StModalWidth } from './st-modal.model';
 
 @Injectable()
 export class StModalService {

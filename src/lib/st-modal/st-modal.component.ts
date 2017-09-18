@@ -24,7 +24,7 @@ import {
 import * as _ from 'lodash';
 
 import { StEgeo, StRequired } from '../decorators/require-decorators';
-import { StModalButton, StModalConfig, StModalMainTextSize, StModalResponse, StModalType, StModalWidth } from './st-modal.interface';
+import { StModalButton, StModalConfig, StModalMainTextSize, StModalResponse, StModalType, StModalWidth } from './st-modal.model';
 
 @StEgeo()
 @Component({
