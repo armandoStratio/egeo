@@ -10,9 +10,19 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<section class="container-liquid">
-   <st-dropdown-menu [items]="menu" [active]="active" [placement]="'top-start'" (change)="onChange($event)">
-      <button (click)="changeActive()" class="button">Show</button>
+<section
+   class="container-liquid">
+
+   <st-dropdown-menu
+      [items]="menu"
+      [active]="active"
+      [placement]="'top-start'"
+      (change)="onChange($event)">
+      <button
+         class="button"
+         (click)="changeActive()">
+         Show
+      </button>
    </st-dropdown-menu>
 
    <p>Value: {{selectedValue.label}}</p>

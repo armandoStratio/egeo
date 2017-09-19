@@ -10,30 +10,73 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<st-pop [hidden]="false" [placement]="placement">
+<st-pop
+   [hidden]="false"
+   [placement]="placement">
+
    <div pop-button #buttonId>
       <ng-content></ng-content>
    </div>
-   <div pop-content [style.z-index]="9">
-      <div class="sth-dropdown-menu dropdown-menu" [attr.id]="qaTag + '-menu'" *ngIf="active" [ngClass]="{'active': active}" [style.minWidth]='widthMenu'>
-         <ul *ngIf="!itemsGroup.length" [attr.aria-hidden]="!active" aria-label="submenu">
-            <st-dropdown-menu-item (change)="onChange($event)" [qaTag]="qaTag" *ngFor="let i of items" [item]="i"></st-dropdown-menu-item>
-            <div *ngIf="!items || items.length === 0" class="without-results sth-dropdown-menu-without-results" [style.maxWidth]='widthMenu'>
+
+   <div
+      pop-content
+      [style.z-index]="9">
+
+      <div
+         class="sth-dropdown-menu dropdown-menu"
+         [attr.id]="qaTag + '-menu'"
+         *ngIf="active"
+         [ngClass]="{'active': active}"
+         [style.minWidth]='widthMenu'>
+
+         <ul
+            *ngIf="!itemsGroup.length"
+            [attr.aria-hidden]="!active"
+            aria-label="submenu">
+            <st-dropdown-menu-item
+               *ngFor="let i of items"
+               [qaTag]="qaTag"
+               [item]="i"
+               (change)="onChange($event)">
+            </st-dropdown-menu-item>
+            <div
+               *ngIf="!items || items.length === 0"
+               class="without-results sth-dropdown-menu-without-results"
+               [style.maxWidth]='widthMenu'>
                {{emptyListMessage}}
             </div>
          </ul>
 
-         <div *ngIf="itemsGroup.length">
-            <ul *ngFor="let item of itemsGroup" [attr.aria-hidden]="!active" aria-label="submenu">
-               <li class="sth-dropdown-menu-parent">
-                  <h3><span>{{ item.title }}</span></h3>
+         <div
+            *ngIf="itemsGroup.length">
+
+            <ul
+               *ngFor="let item of itemsGroup"
+               [attr.aria-hidden]="!active"
+               aria-label="submenu">
+
+               <li
+                  class="sth-dropdown-menu-parent">
+                  <h3>
+                     <span>{{ item.title }}</span>
+                  </h3>
                   <ul>
-                     <st-dropdown-menu-item (change)="onChange($event)" [qaTag]="qaTag" *ngFor="let i of item.items" [item]="i"></st-dropdown-menu-item>
-                     <div *ngIf="!items || !item.items || items.length === 0" class="without-results sth-dropdown-menu-without-results" [style.maxWidth]='widthMenu'>
+                     <st-dropdown-menu-item
+                        (change)="onChange($event)"
+                        [qaTag]="qaTag"
+                        [item]="i"
+                        *ngFor="let i of item.items">
+                     </st-dropdown-menu-item>
+
+                     <div
+                        class="without-results sth-dropdown-menu-without-results"
+                        [style.maxWidth]='widthMenu'
+                        *ngIf="!items || !item.items || items.length === 0">
                         {{emptyListMessage}}
                      </div>
                   </ul>
                </li>
+
             </ul>
          </div>
       </div>

@@ -8,22 +8,5 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-@import '../../../node_modules/@stratio/egeo-ui-base/utils/typography';
-@import '../constants/colors';
 
-.sth-dropdown-button {
-   font-family: egeo-get-font(body);
-   font-weight: egeo-get-font-weight(normal);
-   font-size: egeo-get-font-size(body_xsmall);
-   color: $neutral-09;
-   background-color: $neutral-02;
-
-   &.themeA {
-      background-color: $neutral-02
-   }
-
-   &.themeB {
-      background-color: $neutral-00
-   }
-}
-
+@import '../utils/forms';

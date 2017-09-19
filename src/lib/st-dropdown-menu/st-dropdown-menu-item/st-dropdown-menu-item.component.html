@@ -10,7 +10,14 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<li tabindex="0" [attr.id]="qaTag + '_item_' + item.value" class="sth-dropdown-menu-item" (click)="onChangeItem()" (keyup.enter)="onChangeItem()">
+<li
+   tabindex="0"
+   class="sth-dropdown-menu-item"
+   [attr.id]="qaTag + '_item_' + item.value"
+   (click)="onChangeItem()"
+   (keyup.enter)="onChangeItem()">
+
    <i *ngIf="item.icon" [ngClass]="item.icon"></i>
    <span>{{item.label}}</span>
+
 </li>

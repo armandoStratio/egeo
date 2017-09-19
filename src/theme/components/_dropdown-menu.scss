@@ -8,37 +8,5 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-@import '../../../node_modules/@stratio/egeo-ui-base/utils/typography';
-@import '../constants/colors';
 
-.sth-dropdown-menu {
-   background-color: $neutral-00;
-   font-family: egeo-get-font(body);
-   font-weight: egeo-get-font-weight(normal);
-   font-size: egeo-get-font-size(body_small);
-   color: $brand;
-}
-
-.sth-dropdown-menu-parent {
-   h3 {
-      font-size: egeo-get-font-size(body_xxxsmall);
-      border-bottom: 1px solid $neutral-04;
-   }
-}
-
-.sth-dropdown-menu-item {
-   font-size: egeo-get-font-size(body_xsmall);
-   color: $neutral-08;
-   &:hover {
-      color: $brand;
-      background-color: $neutral-02;
-   }
-}
-
-.sth-dropdown-menu-without-results {
-   font-family: egeo-get-font(body);
-   font-size: egeo-get-font-size(body_xxsmall);
-   line-height: 1.5;
-   text-align: left;
-   color: $neutral-09;
-}
+@import '../utils/forms';

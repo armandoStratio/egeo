@@ -10,13 +10,32 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<st-dropdown-menu [items]="items" [qaTag]="qaTag" (change)="changeOption($event)" [ngClass]="themeClass" class="sth-dropdown-menu"
-   [active]="isActive" [placement]="'top-start'">
-   <div class="sth-dropdown-container" [style.width]="width + 'px'">
-      <button tabindex="0" [style.width]="width + 'px'" [attr.aria-expanded]="isActive" [attr.id]="qaTag + 'button'" aria-haspopup="true"
-         class="button sth-dropdown-button" [ngClass]="themeClass" #buttonId (click)="onClickEvent($event)" [disabled]="disabled">
+<st-dropdown-menu
+   class="sth-dropdown-menu"
+   [items]="items"
+   [qaTag]="qaTag"
+   (change)="changeOption($event)"
+   [ngClass]="themeClass"
+   [active]="isActive"
+   [placement]="'top-start'">
+
+   <div
+      class="sth-dropdown-container"
+      [style.width]="width + 'px'">
+
+      <button tabindex="0"
+         aria-haspopup="true"
+         class="button sth-dropdown-button"
+         [style.width]="width + 'px'"
+         [attr.aria-expanded]="isActive"
+         [attr.id]="qaTag + 'button'"
+         [ngClass]="themeClass"
+         (click)="onClickEvent($event)" [disabled]="disabled"
+         #buttonId>
+
          <span>{{button}}</span>
          <i class="icon-arrow4_down"></i>
       </button>
    </div>
+
 </st-dropdown-menu>
