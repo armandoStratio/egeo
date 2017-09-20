@@ -11,7 +11,7 @@
 
 -->
 <st-dropdown-menu
-   class="sth-dropdown-menu"
+   class="st-dropdown-menu"
    [items]="items"
    [qaTag]="qaTag"
    (change)="changeOption($event)"
@@ -20,12 +20,12 @@
    [placement]="'top-start'">
 
    <div
-      class="sth-dropdown-container"
+      class="st-dropdown-container"
       [style.width]="width + 'px'">
 
       <button tabindex="0"
          aria-haspopup="true"
-         class="button sth-dropdown-button"
+         class="st-dropdown-button"
          [style.width]="width + 'px'"
          [attr.aria-expanded]="isActive"
          [attr.id]="qaTag + 'button'"
@@ -34,7 +34,7 @@
          #buttonId>
 
          <span>{{button}}</span>
-         <i class="icon-arrow4_down"></i>
+         <i class="icon-arrow2_down arrow"></i>
       </button>
    </div>
 
