@@ -12,8 +12,7 @@ import { Component } from '@angular/core';
 
 @Component({
    selector: 'st-button-demo',
-   templateUrl: './st-button-demo.component.html',
-   styleUrls: ['./st-button-demo.component.scss']
+   templateUrl: './st-button-demo.component.html'
 })
 
 export class StButtonDemoComponent {
