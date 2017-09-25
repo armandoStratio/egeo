@@ -37,16 +37,16 @@ import { StDropDownMenuItem } from '../st-dropdown-menu/st-dropdown-menu.interfa
    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StSelectComponent extends EventWindowManager implements ControlValueAccessor, OnDestroy, OnChanges {
-   @Input() public label: string = '';
-   @Input() public qaTag: string;
-   @Input() public tooltip: string;
-   @Input() public name: string = '';
-   @Input() public placeholder: string = '';
-   @Input() public errorRequiredMessage: string = '';
-   @Input() public options: StDropDownMenuItem[] = [];
-   @Input() public disabled: boolean = false;
-   @Input() public selectedValue: StDropDownMenuItem;
-   @Input() public forceValidations: boolean = false;
+   @Input() label: string = '';
+   @Input() qaTag: string;
+   @Input() tooltip: string;
+   @Input() name: string = '';
+   @Input() placeholder: string = '';
+   @Input() errorRequiredMessage: string = '';
+   @Input() options: StDropDownMenuItem[] = [];
+   @Input() disabled: boolean = false;
+   @Input() selectedValue: StDropDownMenuItem;
+   @Input() forceValidations: boolean = false;
 
    public errorMessage: string = undefined;
    public onChange: (_: any) => void;
