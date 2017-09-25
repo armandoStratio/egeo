@@ -13,29 +13,33 @@
 <st-dropdown-menu
    class="st-dropdown-menu"
    [items]="items"
-   [qaTag]="qaTag"
+   [attr.id]="qaTag"
    (change)="changeOption($event)"
    [ngClass]="themeClass"
    [active]="isActive"
    [placement]="'top-start'">
 
    <div
-      class="st-dropdown-container"
-      [style.width]="width + 'px'">
+      class="st-input"
+      [style.width]="width + 'px'"
+      (click)="onClickEvent($event)"
+      #buttonId>
 
-      <button tabindex="0"
+      <input
+         readonly
+         type="text"
          aria-haspopup="true"
          class="st-dropdown-button"
+         [name]="button"
          [style.width]="width + 'px'"
          [attr.aria-expanded]="isActive"
          [attr.id]="qaTag + 'button'"
          [ngClass]="themeClass"
-         (click)="onClickEvent($event)" [disabled]="disabled"
-         #buttonId>
+         [disabled]="disabled"
+         [value]="button ? button : ''"
+         #input>
 
-         <span>{{button}}</span>
          <i class="icon-arrow2_down arrow"></i>
-      </button>
    </div>
 
 </st-dropdown-menu>

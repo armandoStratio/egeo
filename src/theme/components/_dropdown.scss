@@ -10,3 +10,107 @@
  */
 
 @import '../utils/forms';
+
+.st-dropdown-menu {
+   .st-input {
+      position: relative;
+      display: block;
+      background-color: $neutral-00;
+      border-radius: 4px;
+      border:solid 1px $neutral-07;
+      padding: 0;
+
+      &.active {
+         border-color: $input-field-onfocus;
+
+         i {
+            color: $action-primary-default;
+         }
+      }
+
+      &.disabled {
+         border-color: $neutral-05;
+         color: $neutral-05;
+         i {
+            color: $neutral-05;
+         }
+      }
+
+      &.error {
+         border-color: $input-field-error;
+         .st-input-remove-default {
+            color: $status-critical-default;
+         }
+      }
+
+      .st-dropdown-button {
+         width: 100%;
+         padding: 9px 15px;
+      }
+
+      .arrow {
+         position: absolute;
+         right: 15px;
+         top: 12px;
+      }
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sth-dropdown-container {
+   position: relative;
+
+   .button {
+      cursor: pointer;
+      padding: 0 30px 0 11px;
+      line-height: 12px;
+      height: 35px;
+      display: block;
+      text-align: left;
+      position: relative;
+      outline: 0;
+      width: 100%;
+
+      span {
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         word-wrap: break-word;
+         display: inline-block;
+         width: 100%;
+         padding: 11px 0;
+      }
+
+      i {
+         padding-left: 20px;
+         position: absolute;
+         top: 50%;
+         margin-top: -7px;
+         right: 11px;
+         float: right;
+      }
+
+      &:disabled {
+         opacity: 0.5;
+      }
+   }
+
+   .menu {
+      z-index: 1000;
+      width: inherit;
+      display: block;
+   }
+
+}

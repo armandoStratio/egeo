@@ -40,7 +40,6 @@ import { StEgeo, StRequired } from '../decorators/require-decorators';
 @Component({
    selector: 'st-dropdown',
    templateUrl: './st-dropdown.component.html',
-   styleUrls: ['./st-dropdown.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StDropdownComponent extends EventWindowManager

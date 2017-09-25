@@ -12,41 +12,43 @@
 -->
 <div class="st-select" [attr.id]="qaTag">
 
-   <label st-label [ngClass]="{error: showError(), active: isFocused, disabled: disabled}" name="name" [attr.id]="qaTag + '-label'" [attr.title]="tooltip">
-      {{label}}
-   </label>
+      <label st-label [ngClass]="{error: showError(), active: isFocused, disabled: disabled}" name="name" [attr.id]="qaTag + '-label'" [attr.title]="tooltip">
+         {{label}}
+      </label>
 
-   <st-dropdown-menu
-      class="combo-menu"
-      [items]="options"
-      [attr.id]="qaTag + 'menu'"
-      [active]="isActive"
-      [placement]="'top-start'"
-      (change)="changeOption($event)">
+      <st-dropdown-menu
+         class="st-dropdown-menu"
+         [items]="options"
+         [attr.id]="qaTag + 'menu'"
+         [active]="isActive"
+         [placement]="'bottom-start'"
+         (change)="changeOption($event)">
 
-      <div
-         class="st-input"
-         [ngClass]="{disabled: disabled, error: showError(), active: isActive}"
-         (click)="onClickButton($event)"
-         #buttonId>
+         <div
+            class="st-input"
+            [ngClass]="{disabled: disabled, error: showError(), active: isActive}"
+            (click)="onClickButton($event)"
+            #buttonId>
 
-         <input
-            readonly
-            type="text"
-            [attr.id]="qaTag"
-            [name]="name"
-            [placeholder]="placeholder"
-            [value]="selectedValue && selectedValue.label ? selectedValue.label : ''"
-            [disabled]="disabled"
-            (focus)="onFocus($event)"
-            (focusout)="onFocusOut($event)"
-            (blur)="onFocusOut($event)"
-            #input>
-         <i class="icon-arrow2_down arrow"></i>
+            <input
+               readonly
+               class="st-dropdown-button"
+               type="text"
+               [attr.id]="qaTag"
+               [name]="name"
+               [placeholder]="placeholder"
+               [value]="selectedValue && selectedValue.label ? selectedValue.label : ''"
+               [disabled]="disabled"
+               (focus)="onFocus($event)"
+               (focusout)="onFocusOut($event)"
+               (blur)="onFocusOut($event)"
+               #input>
+
+            <i class="icon-arrow2_down arrow"></i>
+         </div>
+      </st-dropdown-menu>
+
+      <div class="st-input-error-layout" *ngIf="showError()">
+         <span class="st-input-error-message">{{errorMessage}}</span>
       </div>
-   </st-dropdown-menu>
-
-   <div class="st-input-error-layout" *ngIf="showError()">
-      <span class="st-input-error-message">{{errorMessage}}</span>
    </div>
-</div>
