@@ -97,7 +97,7 @@
       "rollup-plugin-node-resolve": "3.0.0",
       "rollup-plugin-strip-banner": "0.2.0",
       "run-sequence": "2.0.0",
-      "rxjs": "5.4.1",
+      "rxjs": "5.4.2",
       "scss-bundle": "2.1.0",
       "showdown": "1.7.1",
       "sorcery": "0.10.0",

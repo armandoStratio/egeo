@@ -24,6 +24,8 @@ import { StDropDownMenuItem, StDropDownMenuGroup } from '@stratio/egeo';
 })
 export class StDropdownDemoComponent {
 
+   public disabled: boolean = false;
+
    public items: Array<StDropDownMenuItem> = [
       { label: 'Item 1', value: 1, selected: true },
       { label: 'Item 2', value: 2 },
@@ -53,4 +55,8 @@ export class StDropdownDemoComponent {
       { title: 'Group1', items: this.items },
       { title: 'Group2', items: this.items10 }
    ];
+
+   public toogleDisable(): void {
+      this.disabled = !this.disabled;
+   }
 }

@@ -16,6 +16,13 @@
          {{label}}
       </label>
 
+      <st-dropdown
+         button="Example With Icons"
+         default="true"
+         [items]="options">
+      </st-dropdown>
+
+      <!--
       <st-dropdown-menu
          class="st-dropdown-menu"
          [items]="options"
@@ -47,6 +54,7 @@
             <i class="icon-arrow2_down arrow"></i>
          </div>
       </st-dropdown-menu>
+      -->
 
       <div class="st-input-error-layout" *ngIf="showError()">
          <span class="st-input-error-message">{{errorMessage}}</span>

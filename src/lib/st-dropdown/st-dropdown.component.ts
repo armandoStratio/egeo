@@ -22,8 +22,10 @@ import {
    Output,
    Renderer,
    ViewChild,
-   HostListener
+   HostListener,
+   SimpleChanges
 } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -42,29 +44,27 @@ import { StEgeo, StRequired } from '../decorators/require-decorators';
    templateUrl: './st-dropdown.component.html',
    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StDropdownComponent extends EventWindowManager
-   implements OnDestroy, OnInit, OnChanges {
+export class StDropdownComponent extends EventWindowManager implements OnDestroy, OnInit, OnChanges {
    @Input() button: string;
    @Input() active: boolean;
    @StRequired()
-   @Input()
-   items: Array<StDropDownMenuItem | StDropDownMenuGroup>;
+   @Input() items: Array<StDropDownMenuItem | StDropDownMenuGroup>;
    @Input() default: boolean;
    @Input() firstSelected: boolean;
-   @Input() disabled: boolean;
+   @Input() disabled: boolean = false;
    @Input() width: string;
    @Input() qaTag: string;
    @Input() themeClass: string;
    @Output() click: EventEmitter<boolean> = new EventEmitter<boolean>();
    @Output() change: EventEmitter<Object> = new EventEmitter<Object>();
-   @ViewChild('buttonId') buttonElement: ElementRef;
 
-   public widthMenu: string;
+   widthMenu: string;
+   dropdownButtonControl: FormControl = new FormControl();
 
    constructor(
       private renderer: Renderer,
       private cd: ChangeDetectorRef,
-      @ViewChild('buttonId') buttonElement: ElementRef
+      @ViewChild('input') buttonElement: ElementRef
    ) {
       super(renderer, cd, buttonElement);
    }
@@ -72,12 +72,17 @@ export class StDropdownComponent extends EventWindowManager
    ngOnInit(): void {
       this.checkFirstSelected();
       this.findSelected();
+      this.dropdownButtonControl.setValue(this.button ? this.button : '');
+      this.setDisabledState(this.disabled);
    }
 
-   ngOnChanges(values: any): void {
-      if (values.items) {
+   ngOnChanges(changes: SimpleChanges): void {
+      if (changes.items) {
          this.checkFirstSelected();
          this.findSelected();
+      }
+      if (changes.disabled) {
+         this.setDisabledState(changes.disabled.currentValue);
       }
    }
 
@@ -89,7 +94,9 @@ export class StDropdownComponent extends EventWindowManager
       this.active = !this.active;
       this.updateSelected(item);
 
-      if (!this.default) this.button = item.label;
+      if (!this.default) {
+         this.dropdownButtonControl.setValue(item.label);
+      }
       this.change.emit(item);
       this.closeElement();
    }
@@ -97,7 +104,6 @@ export class StDropdownComponent extends EventWindowManager
    onClickEvent(event: MouseEvent): void {
       this.openElement();
       this.click.emit(true);
-      event.stopPropagation();
    }
 
    @HostListener('document:keydown', ['$event'])
@@ -112,12 +118,20 @@ export class StDropdownComponent extends EventWindowManager
       this.closeElement();
    }
 
+   private setDisabledState(disabled: boolean | string): void {
+      if ((typeof disabled === 'boolean' && disabled) || (typeof disabled === 'string' && disabled !== 'true')) {
+         this.dropdownButtonControl.disable();
+      } else {
+         this.dropdownButtonControl.enable();
+      }
+   }
+
    private findSelected(): void {
       if (this.isStDropdownItem(this.items)) {
          let item = this.items.find(object => object.selected === true);
 
          if (item) {
-            this.button = item.label;
+            this.dropdownButtonControl.setValue(item.label);
             this.cd.markForCheck();
          }
       } else if (this.items && this.items.length > 0) {
@@ -128,7 +142,7 @@ export class StDropdownComponent extends EventWindowManager
             .filter(object => object !== undefined);
 
          if (items.length > 0) {
-            this.button = items[0].label;
+            this.dropdownButtonControl.setValue(items[0].label);
             this.cd.markForCheck();
          }
       }

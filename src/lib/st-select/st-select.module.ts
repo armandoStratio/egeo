@@ -13,11 +13,11 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { StLabelModule } from '../st-label/st-label.module';
-import { StDropdownMenuModule } from '../st-dropdown-menu/st-dropdown-menu.module';
+import { StDropdownModule } from '../st-dropdown/st-dropdown.module';
 import { StSelectComponent } from './st-select.component';
 
 @NgModule({
-   imports: [CommonModule, FormsModule, ReactiveFormsModule, StLabelModule, StDropdownMenuModule],
+   imports: [CommonModule, FormsModule, ReactiveFormsModule, StLabelModule, StDropdownModule],
    declarations: [StSelectComponent],
    exports: [StSelectComponent]
 })

@@ -12,46 +12,23 @@
 @import '../utils/forms';
 
 .st-dropdown-menu {
-   .st-input {
-      position: relative;
-      display: block;
-      background-color: $neutral-00;
-      border-radius: 4px;
-      border:solid 1px $neutral-07;
-      padding: 0;
+   display: block;
+   position: relative;
 
-      &.active {
-         border-color: $input-field-onfocus;
-
-         i {
-            color: $action-primary-default;
-         }
-      }
-
-      &.disabled {
-         border-color: $neutral-05;
-         color: $neutral-05;
-         i {
-            color: $neutral-05;
-         }
-      }
-
-      &.error {
-         border-color: $input-field-error;
-         .st-input-remove-default {
-            color: $status-critical-default;
-         }
-      }
-
-      .st-dropdown-button {
-         width: 100%;
-         padding: 9px 15px;
-      }
-
-      .arrow {
-         position: absolute;
-         right: 15px;
-         top: 12px;
-      }
+   .arrow {
+      position: absolute;
+      right: 15px;
+      top: 12px;
    }
+
+   .st-input {
+      padding: 10px 40px 10px 15px;
+
+      &[disabled],
+      &[disabled] + .arrow {
+         color: $neutral-05;
+      }
+
+   }
+
 }

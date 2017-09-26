@@ -15,11 +15,18 @@
       <div class="col-md-12">
 
          <st-dropdown
+            [disabled]="disabled"
             button="Example with scroll"
             qaTag="dropdown"
             [items]="items10">
          </st-dropdown>
 
+         <br />
+
+         <button class="button button-primary" (click)="toogleDisable()">Set disabled</button>
+
+         <br />
+         <br />
          <br />
          <br />
       </div>
@@ -27,12 +34,7 @@
 
    <div class="row">
       <div class="col-md-12">
-         <st-dropdown
-            button="Example 2 group"
-            [items]="itemsWithGroup"
-            width="130">
-         </st-dropdown>
-
+         <st-dropdown button="Example 2 group" [items]="itemsWithGroup" width="130"></st-dropdown>
          <br />
          <br />
       </div>
@@ -64,7 +66,7 @@
 
    <div class="row">
       <div class="col-md-12">
-         <st-dropdown button="Example Disabled" disabled="true" [items]="itemsWithIcon"></st-dropdown>
+         <st-dropdown button="Example Disabled" [items]="itemsWithIcon" disabled></st-dropdown>
          <br />
          <br />
       </div>
@@ -79,11 +81,17 @@
    </div>
 
    <div class="row">
+      <div class="col-md-12">
+         <st-dropdown button="Example With Group" [items]="itemsWithGroup" [default]="true"></st-dropdown>
+         <br />
+         <br />
+      </div>
+   </div>
+
+   <div class="row">
       <div class="col-md-12 background-grey">
          <st-dropdown button="Example With Theme Light" themeClass="themeB" [items]="items"></st-dropdown>
       </div>
    </div>
-<!--
--->
 
 </section>
