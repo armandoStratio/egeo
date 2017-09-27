@@ -44,7 +44,7 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
    @Input() placeholder: string = '';
    @Input() errorRequiredMessage: string = '';
    @Input() options: StDropDownMenuItem[] = [];
-   @Input() disabled: boolean = false;
+   @Input() disabled: boolean | string = false;
    @Input() selectedValue: StDropDownMenuItem;
    @Input() forceValidations: boolean = false;
 
@@ -52,6 +52,8 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
    public onChange: (_: any) => void;
    public onTouched: () => void;
    public isFocused: boolean = false;
+
+   dropdownButtonControl: FormControl = new FormControl();
 
    private sub: Subscription;
    private pristine: boolean = true;
@@ -64,6 +66,11 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
       @ViewChild('input') public inputElement: ElementRef
    ) {
       super(renderer, cd, buttonElement);
+   }
+
+   ngOnInit(): void {
+      console.log( this.disabled );
+      this.setDisabledState(this.disabled);
    }
 
    validate(control: FormControl): any {
@@ -95,9 +102,9 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
 
    // This function is called when the control status changes to or from "DISABLED".
    // Depending on the value, it will enable or disable the appropriate DOM element.
-   setDisabledState(isDisabled: boolean): void {
-      this.disabled = isDisabled;
-   }
+   // setDisabledState(disabled: boolean): void {
+   //    this.disabled = disabled;
+   // }
 
    ngOnChanges(changes: SimpleChanges): void {
       if (changes.forceValidations && changes.forceValidations.currentValue) {
@@ -118,12 +125,12 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
       this.closeElement();
    }
 
-   onClickButton(event: Event): void {
-      if (!this.disabled) {
-         (this.inputElement.nativeElement as HTMLInputElement).focus();
-         this.openElement();
-      }
-   }
+   // onClickButton(event: Event): void {
+   //    if (!this.disabled) {
+   //       (this.inputElement.nativeElement as HTMLInputElement).focus();
+   //       this.openElement();
+   //    }
+   // }
 
    showError(): boolean {
       return this.errorMessage !== undefined && (!this.pristine || this.forceValidations) && !this.isFocused && !this.disabled;
@@ -137,12 +144,25 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
       this.isFocused = false;
    }
 
+   setDisabledState(disabled: boolean | string): void {
+      console.log( '>>>>>>>> disabled in select', this.disabled );
+      if (
+         (typeof disabled === 'boolean' && disabled) ||
+         (typeof disabled === 'string' && disabled !== 'true')
+      ) {
+         this.dropdownButtonControl.disable();
+      } else {
+         this.dropdownButtonControl.enable();
+      }
+   }
+
    // When status change call this function to check if have errors
    private checkErrors(control: FormControl): void {
       this.pristine = control.pristine;
       this.errorMessage = this.getErrorMessage(control.errors);
       this.cd.markForCheck();
    }
+
 
    // Get error message in function of error list.
    private getErrorMessage(errors: { [key: string]: any }): string {

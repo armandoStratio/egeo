@@ -23,7 +23,7 @@ export class SelectDemoComponent {
 
    public options: StDropDownMenuItem[] = [];
    public forceValidations: boolean = false;
-   public isDisabled: boolean = false;
+   public disabled: boolean = true;
    public errorMessage: string = 'Error, this field is required';
    public model: any = {
       option1: null,
@@ -50,17 +50,6 @@ export class SelectDemoComponent {
 
    changeForceValidations(): void {
       this.forceValidations = true;
-   }
-
-   changeDisabled(): void {
-      this.isDisabled = !this.isDisabled;
-      if (this.isDisabled) {
-         this.reactiveForm.get('option1').disable();
-         this.templateDrivenForm.form.get('option1-template').disable();
-      } else {
-         this.reactiveForm.get('option1').enable();
-         this.templateDrivenForm.form.get('option1-template').enable();
-      }
    }
 
    onSubmitReactiveForm(): void {

@@ -10,51 +10,24 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<div class="st-select" [attr.id]="qaTag">
+<div
+   class="st-select"
+   [attr.id]="qaTag">
 
-      <label st-label [ngClass]="{error: showError(), active: isFocused, disabled: disabled}" name="name" [attr.id]="qaTag + '-label'" [attr.title]="tooltip">
+      <label
+         st-label
+         name="name"
+         [ngClass]="{error: showError(), active: isFocused, disabled: disabled}"
+         [attr.id]="qaTag + '-label'"
+         [attr.title]="tooltip">
          {{label}}
       </label>
 
       <st-dropdown
+         [disabled]="disabled"
          button="Example With Icons"
-         default="true"
          [items]="options">
       </st-dropdown>
-
-      <!--
-      <st-dropdown-menu
-         class="st-dropdown-menu"
-         [items]="options"
-         [attr.id]="qaTag + 'menu'"
-         [active]="isActive"
-         [placement]="'bottom-start'"
-         (change)="changeOption($event)">
-
-         <div
-            class="st-input"
-            [ngClass]="{disabled: disabled, error: showError(), active: isActive}"
-            (click)="onClickButton($event)"
-            #buttonId>
-
-            <input
-               readonly
-               class="st-dropdown-button"
-               type="text"
-               [attr.id]="qaTag"
-               [name]="name"
-               [placeholder]="placeholder"
-               [value]="selectedValue && selectedValue.label ? selectedValue.label : ''"
-               [disabled]="disabled"
-               (focus)="onFocus($event)"
-               (focusout)="onFocusOut($event)"
-               (blur)="onFocusOut($event)"
-               #input>
-
-            <i class="icon-arrow2_down arrow"></i>
-         </div>
-      </st-dropdown-menu>
-      -->
 
       <div class="st-input-error-layout" *ngIf="showError()">
          <span class="st-input-error-message">{{errorMessage}}</span>

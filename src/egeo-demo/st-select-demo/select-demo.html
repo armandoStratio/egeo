@@ -17,15 +17,15 @@
 
          <st-select
             label="Label text 1"
-            [options]="options"
             qaTag="combo-option1-template-example"
             tooltip="Select option from list"
             name="option1-template"
             placeholder="Select option"
+            [disabled]='disabled'
+            [options]="options"
             [errorRequiredMessage]="errorMessage"
             [forceValidations]="forceValidations"
-            [(ngModel)]="model.option1"
-            required>
+            [(ngModel)]="model.option1">
          </st-select>
 
          <div class="separator"></div>
@@ -39,10 +39,8 @@
             placeholder="Select option"
             [errorRequiredMessage]="errorMessage"
             [forceValidations]="forceValidations"
-            [(ngModel)]="model.option2"
-            disabled>
+            [(ngModel)]="model.option2">
          </st-select>
-
       </div>
 
       <div class="separator"></div>
@@ -67,18 +65,17 @@
       <div class="form-group">
 
          <st-select
+            required
             formControlName="option1"
             label="Option 1"
-            [options]="options"
             qaTag="combo-option1-template-example"
             tooltip="Select option from list"
             name="option1"
             placeholder="Select option"
+            [options]="options"
             [errorRequiredMessage]="errorMessage"
-            [forceValidations]="forceValidations"
-            required>
+            [forceValidations]="forceValidations">
          </st-select>
-
       </div>
 
       <div class="separator"></div>

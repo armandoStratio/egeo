@@ -19,20 +19,20 @@
    [style.width]="width + 'px'"
    [placement]="'top-start'">
 
-      <input
-         readonly
-         type="text"
-         [formControl]="dropdownButtonControl"
-         aria-haspopup="true"
-         class="st-input"
-         [name]="button"
-         [style.width]="width + 'px'"
-         [attr.aria-expanded]="isActive"
-         [attr.id]="qaTag + 'button'"
-         [ngClass]="themeClass"
-         (click)="onClickEvent($event)"
-         #input
-      />
+   <input
+      readonly
+      type="text"
+      [formControl]="dropdownButtonControl"
+      aria-haspopup="true"
+      class="st-input"
+      [name]="button"
+      [style.width]="width + 'px'"
+      [attr.aria-expanded]="isActive"
+      [attr.id]="qaTag + 'button'"
+      [ngClass]="themeClass"
+      (click)="onClickEvent($event)"
+      #input
+   />
 
-      <i class="icon-arrow2_down arrow"></i>
+   <i class="icon-arrow2_down arrow"></i>
 </st-dropdown-menu>
