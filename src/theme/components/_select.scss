@@ -50,6 +50,28 @@
          margin-top: 2px !important;
       }
    }
+
+   &.disabled {
+
+      .st-label {
+         color: $neutral-06;
+      }
+   }
+
+   &.active:not(.disabled) {
+
+      .st-label {
+         color: $action-primary-default;
+      }
+
+      .st-input {
+         color: $neutral-07;
+      }
+
+      .arrow {
+         color: $action-primary-default;
+      }
+   }
 }
 
 

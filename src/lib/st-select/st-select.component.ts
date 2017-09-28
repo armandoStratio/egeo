@@ -14,6 +14,7 @@ import {
    Component,
    ElementRef,
    forwardRef,
+   HostListener,
    Input,
    OnChanges,
    Renderer,
@@ -58,10 +59,21 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
    private sub: Subscription;
    private pristine: boolean = true;
 
+   @HostListener('document:click', ['$event']) onClick(event: Event): void {
+
+      if ( this.el.nativeElement.contains(event.target) ) {
+         this.isFocused = true;
+      } else {
+         this.isFocused = false;
+      }
+
+      // this.isFocused = !this.el.nativeElement.contains(event.target) ? true : false;
+   }
 
    constructor(
       private renderer: Renderer,
       private cd: ChangeDetectorRef,
+      private el: ElementRef,
       @ViewChild('buttonId') public buttonElement: ElementRef,
       @ViewChild('input') public inputElement: ElementRef
    ) {
@@ -69,7 +81,6 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
    }
 
    ngOnInit(): void {
-      console.log( this.disabled );
       this.setDisabledState(this.disabled);
    }
 
@@ -125,13 +136,6 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
       this.closeElement();
    }
 
-   // onClickButton(event: Event): void {
-   //    if (!this.disabled) {
-   //       (this.inputElement.nativeElement as HTMLInputElement).focus();
-   //       this.openElement();
-   //    }
-   // }
-
    showError(): boolean {
       return this.errorMessage !== undefined && (!this.pristine || this.forceValidations) && !this.isFocused && !this.disabled;
    }
@@ -145,7 +149,6 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
    }
 
    setDisabledState(disabled: boolean | string): void {
-      console.log( '>>>>>>>> disabled in select', this.disabled );
       if (
          (typeof disabled === 'boolean' && disabled) ||
          (typeof disabled === 'string' && disabled !== 'true')

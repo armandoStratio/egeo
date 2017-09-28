@@ -12,12 +12,11 @@
 -->
 <div
    class="st-select"
-   [attr.id]="qaTag">
+   [ngClass]="{error: showError(), active: isFocused && !disabled, disabled: disabled}">
 
       <label
          st-label
          name="name"
-         [ngClass]="{error: showError(), active: isFocused, disabled: disabled}"
          [attr.id]="qaTag + '-label'"
          [attr.title]="tooltip">
          {{label}}
