@@ -60,14 +60,7 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
    private pristine: boolean = true;
 
    @HostListener('document:click', ['$event']) onClick(event: Event): void {
-
-      if ( this.el.nativeElement.contains(event.target) ) {
-         this.isFocused = true;
-      } else {
-         this.isFocused = false;
-      }
-
-      // this.isFocused = !this.el.nativeElement.contains(event.target) ? true : false;
+      this.isFocused = this.el.nativeElement.contains(event.target) ? true : false;
    }
 
    constructor(
@@ -138,14 +131,6 @@ export class StSelectComponent extends EventWindowManager implements ControlValu
 
    showError(): boolean {
       return this.errorMessage !== undefined && (!this.pristine || this.forceValidations) && !this.isFocused && !this.disabled;
-   }
-
-   onFocus(event: Event): void {
-      this.isFocused = true;
-   }
-
-   onFocusOut(event: Event): void {
-      this.isFocused = false;
    }
 
    setDisabledState(disabled: boolean | string): void {
