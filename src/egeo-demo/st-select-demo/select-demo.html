@@ -11,52 +11,46 @@
 
 -->
 <section class="container-liquid">
+   <st-select placeholder="Select option" [options]="options">
+   </st-select>
+
+   <div class="separator"></div>
+   <button class="button button-primary" (click)="changeOptions()">Change options</button>
+
+   <div class="separator"></div>
+   <div class="separator"></div>
+   <div class="separator"></div>
+
    <h1>TEMPLATE DRIVEN EXAMPLE</h1>
    <form #templateDrivenForm="ngForm" novalidate autocomplete="off" class="col-md-3">
       <div class="form-group">
 
          <st-select
-            label="Label text 1"
-            qaTag="combo-option1-template-example"
-            tooltip="Select option from list"
-            name="option1-template"
+            stCheckValidations
+            label="Option 1"
+            tooltip="Prueba"
             placeholder="Select option"
-            [disabled]='disabled'
             [options]="options"
-            [errorRequiredMessage]="errorMessage"
-            [forceValidations]="forceValidations"
-            [(ngModel)]="model.option1">
+            [(ngModel)]="model.option1"
+            name="option1"
+            required
+            id="test"
+            (select)="onSelect($event)"
+            class="st-form-field"
+         >
          </st-select>
+         <div class="separator"></div>
+
+         <button class="button button-primary"><span>Submit</span></button>
 
          <div class="separator"></div>
 
-         <st-select
-            label="Label text 2"
-            [options]="options"
-            qaTag="combo-option2-template-example"
-            tooltip="Select option from list"
-            name="option2-template"
-            placeholder="Select option"
-            [errorRequiredMessage]="errorMessage"
-            [forceValidations]="forceValidations"
-            [(ngModel)]="model.option2">
-         </st-select>
+         <p>Form value: {{ templateDrivenForm.value | json }}</p>
+         <p>Form status: {{ templateDrivenForm.valid ? 'VALID' : 'INVALID' }}</p>
       </div>
-
-      <div class="separator"></div>
-      <div class="separator"></div>
-
-      <button class="button button-primary">
-         <span>Submit</span>
-      </button>
-
-      <div class="separator"></div>
-      <div class="separator"></div>
-
-      <p *ngIf="templateDrivenForm.valid">Form status: VALID</p>
-      <p *ngIf="!templateDrivenForm.valid">Form status: INVALID</p>
    </form>
 
+   <div class="separator"></div>
    <div class="separator"></div>
    <div class="separator"></div>
 
@@ -65,49 +59,23 @@
       <div class="form-group">
 
          <st-select
-            required
-            formControlName="option1"
-            label="Option 1"
-            qaTag="combo-option1-template-example"
-            tooltip="Select option from list"
-            name="option1"
-            placeholder="Select option"
-            [options]="options"
-            [errorRequiredMessage]="errorMessage"
-            [forceValidations]="forceValidations">
+         stCheckValidations
+         formControlName="option1"
+         placeholder="Select option"
+         [options]="options"
+         class="st-form-field"
+         >
          </st-select>
       </div>
 
       <div class="separator"></div>
 
-      <button class="button button-primary">
-         <span>Submit</span>
-      </button>
+      <button class="button button-primary"><span>Submit</span></button>
 
       <div class="separator"></div>
 
-      <div *ngIf="reactiveForm.valid">
-         <p>Form status: VALID</p>
-      </div>
-      <div *ngIf="!reactiveForm.valid">
-         <p>Form status: INVALID</p>
-      </div>
+      <p>Form value: {{ reactiveForm.value | json }}</p>
+      <p>Form status: {{ reactiveForm.status | json }}</p>
    </form>
-
-   <div class="separator"></div>
-
-   <button class="button button-primary" (click)="changeForceValidations()">
-      <span>Force validations</span>
-   </button>
-
-   <button class="button button-secondary-gray" (click)="changeDisabled()">
-      <span>Change disable status</span>
-   </button>
-
-   <div class="separator"></div>
-
-   <div>
-      {{model | json}}
-   </div>
 
 </section>

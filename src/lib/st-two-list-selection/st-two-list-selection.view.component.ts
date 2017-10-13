@@ -46,8 +46,8 @@ export class StTwoListSelectionViewComponent {
    @Output() moveToAll: EventEmitter<Event> = new EventEmitter<Event>();
    @Output() selectExtraLabelSelected: EventEmitter<StTwoListSelectExtraLabelAction> = new EventEmitter<StTwoListSelectExtraLabelAction>();
    @Output() selectExtraLabelAll: EventEmitter<StTwoListSelectExtraLabelAction> = new EventEmitter<StTwoListSelectExtraLabelAction>();
-   @Output() changeOrderAll: EventEmitter<StDropDownMenuItem> = new EventEmitter<StDropDownMenuItem>();
-   @Output() changeOrderSelected: EventEmitter<StDropDownMenuItem> = new EventEmitter<StDropDownMenuItem>();
+   @Output() changeOrderAll: EventEmitter<any> = new EventEmitter<any>();
+   @Output() changeOrderSelected: EventEmitter<any> = new EventEmitter<any>();
 
    get allTitle(): string {
       return this.config && this.config.allElementsListTitle || '';

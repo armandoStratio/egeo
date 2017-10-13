@@ -23,21 +23,6 @@ p {
    padding: 0
 }
 
-.temp1 {
-   font-family: 'Nunito Sans';
-   color: #aaa;
-   font-size: 12px;
-   line-height: 12px;
-   display: block;
-   margin-bottom: 5px;
-}
-
-.temp2 {
-   font-family: 'Nunito Sans';
-   background-color: #f1f1f1;
-   padding: 10px 0;
-}
-
 .separator {
    display: block;
    margin: 10px;
@@ -48,4 +33,9 @@ st-select {
    width: 306px;
    position: relative;
    display: block;
+}
+
+form {
+   border: 1px solid black;
+   padding: 20px;
 }

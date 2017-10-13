@@ -9,16 +9,17 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { StLabelModule } from '../st-label/st-label.module';
-import { StDropdownModule } from '../st-dropdown/st-dropdown.module';
-import { StSelectComponent } from './st-select.component';
+import { StDropdownMenuModule } from '../st-dropdown-menu/st-dropdown-menu.module';
+import { StSelectComponent } from './st-select';
+import { StCheckValidationsDirective } from './st-check-validations';
 
 @NgModule({
-   imports: [CommonModule, FormsModule, ReactiveFormsModule, StLabelModule, StDropdownModule],
-   declarations: [StSelectComponent],
-   exports: [StSelectComponent]
+   imports: [CommonModule, StDropdownMenuModule, FormsModule, ReactiveFormsModule],
+   declarations: [StSelectComponent, StCheckValidationsDirective],
+   exports: [StSelectComponent, StCheckValidationsDirective]
 })
-export class StSelectModule { }
+export class StSelectModule {
+}

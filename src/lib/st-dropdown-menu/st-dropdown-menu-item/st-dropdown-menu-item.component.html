@@ -11,13 +11,13 @@
 
 -->
 <li
-   tabindex="0"
+   [attr.tabindex]="index"
    class="st-dropdown-menu-item"
-   [attr.id]="qaTag + '_item_' + item.value"
    (click)="onChangeItem()"
-   (keyup.enter)="onChangeItem()">
+   (keyup.enter)="onChangeItem()"
+   [ngClass]="{'selected': isSelected && styleSelected}"
+   *ngIf="hasItem">
 
-   <i *ngIf="item.icon" [ngClass]="item.icon"></i>
-   <span>{{item.label}}</span>
-
+      <i *ngIf="item && item.icon" [ngClass]="item.icon"></i>
+      <span *ngIf="item">{{item.label}}</span>
 </li>

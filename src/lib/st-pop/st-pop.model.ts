@@ -1,4 +1,4 @@
-/**
+/*
  * © 2017 Stratio Big Data Inc., Sucursal en España.
  *
  * This software is licensed under the Apache License, Version 2.0.
@@ -8,15 +8,8 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-@import '../constants/colors';
-@import '../constants/fonts';
-@import '../utils/forms';
-
-.st-textarea {
-    @extend %st-form-control;
- }
-
-.st-textarea-error-message {
-   font-size: $egeo-font-size-xxxsmall;
-   color: $status-critical-default;
+export enum StPopPlacement { TOP, TOP_START, TOP_END, BOTTOM, BOTTOM_START, BOTTOM_END }
+export class StPopOffset {
+   x?: number = 0;
+   y?: number = 0;
 }

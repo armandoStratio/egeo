@@ -15,5 +15,5 @@
    <st-search class="search" *ngIf="hasSearch" [placeholder]="searchPlaceholder" [qaTag]="searchQaTag" (search)="search.emit($event)"></st-search>
    <list-scroll [list]="list" [mode]="mode" (selectItem)="selectItem.emit($event)" [qaTag]="listQaTag" [editable]="editable" [qaTag]="listQaTag" [editable]="editable"
              (selectExtraLabel)="selectExtraLabel.emit($event)"></list-scroll>
-   <st-dropdown *ngIf="hasOrder" class="orderCombo" button="Order" [items]="orderOptions" (change)="changeOrder.emit($event)"></st-dropdown>
+   <st-select *ngIf="hasOrder" class="orderCombo" button="Order" [options]="orderOptions" (select)="changeOrder.emit($event)"></st-select>
 </div>

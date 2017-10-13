@@ -49,23 +49,3 @@
 %st-form-control.error {
    border-color: $input-field-error;
 }
-
-%form-label-default {
-   color: $neutral-08;
-   font-family: $egeo-nunito-sans-bold;
-   font-size: $egeo-font-size-xxsmall;
-   line-height: $egeo-line-height-xxsmall;
-   margin-bottom: 1px;
-
-   &.error {
-      color: $status-critical-default;
-   }
-
-   &.active {
-      color: $action-primary-default;
-   }
-
-   &.disabled {
-      color: $neutral-06;
-   }
-}

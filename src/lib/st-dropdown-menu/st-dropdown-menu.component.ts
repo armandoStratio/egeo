@@ -9,108 +9,140 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import {
-   ChangeDetectionStrategy,
-   Component,
-   EventEmitter,
-   Input,
-   OnInit,
-   Output,
    AfterViewInit,
+   ChangeDetectionStrategy,
    ChangeDetectorRef,
+   Component,
    ElementRef,
-   ViewChild,
-   HostListener
+   EventEmitter,
+   HostListener,
+   Input,
+   Output,
+   OnChanges,
+   SimpleChanges,
+   ViewChild
 } from '@angular/core';
 
+import { StPopPlacement, StPopOffset } from '../st-pop/st-pop.model';
 import { StDropDownMenuGroup, StDropDownMenuItem } from './st-dropdown-menu.interface';
 
 /**
- * @description {Component} Dropdown-Menu
- * This directive show a autocomplete list in element that you attach
+ * @description {Component} [Dropdown Menu]
+ * This directive show a dropdown menu list in element that you attach
  *
  * @example
  *
+ * {html}
+ *
+ * ```
  * <st-dropdown-menu [items]="list" [active]="show" (change)="onChange(event)">
- *    <button (click)="show = !show">Show menu</button>
+ *    <button class="button button-primary" (click)="show = !show">Show menu</button>
  * </st-dropdown-menu>
+ * ```
  */
 @Component({
    selector: 'st-dropdown-menu',
    templateUrl: './st-dropdown-menu.component.html',
    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StDropdownMenuComponent implements OnInit, AfterViewInit {
+export class StDropdownMenuComponent implements AfterViewInit, OnChanges {
 
-   /** @input {string} qaTag For set id for tests */
-   @Input() qaTag: string;
-   /** @input {boolean} active=false Show or hide list */
+   /** @Input {boolean} [active=false] Show or hide list */
    @Input() active: boolean = false;
-   /** @input {StDropDownMenuItem[] | StDropDownMenuGroup[]} items List of items or groups of them to show in menu */
-   @Input() items: StDropDownMenuItem[] | StDropDownMenuGroup[];
+   /** @Input {StDropDownMenuItem[] | StDropDownMenuGroup[]} [items=\[\]] List of items or groups of them to show in menu */
+   @Input() items: StDropDownMenuItem[] | StDropDownMenuGroup[] = [];
    /* tslint:disable-next-line:max-line-length */
-   /** @input { 'top', 'top-start', 'top-end', 'right', 'right-start', 'right-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end'} [placement='bottom-start'] Posible possitions of menu with respect element to attach */
-   @Input() placement: string = 'bottom-start';
-   /** @input {string} [emptyListMessage=''] Message to show in case of empty list */
+   /** @Input {StPopPlacement} [placement=StPopPlacement.BOTOM_START] Posible possitions of menu with respect element to attach */
+   @Input() placement: StPopPlacement = StPopPlacement.BOTTOM_START;
+   /** @Input {string} [emptyListMessage=''] Message to show in case of empty list */
    @Input() emptyListMessage: string = '';
+   /** @Input {StDropDownMenuItem | undefined} [selectedItem=undefined] Define selected item without passing as property */
+   @Input() selectedItem: StDropDownMenuItem = undefined;
+   /** @Input {StDropDownMenuItem | undefined} [selectedItem=undefined] Define selected item without passing as property */
+   @Input() itemsBeforeScroll: number = 8;
+   /** @Input {boolean} [moveSelected=true] If true, apply class selected to selected item */
+   @Input() moveSelected: boolean = true;
+   /** @Input {boolean} [styleSelected=true] If true, move selected item to top in menu when open */
+   @Input() styleSelected: boolean = true;
+   /** @Input {StPopOffset} [offset={x: 0 , y: 0}] For position with offset in x o y axis */
+   @Input() offset: StPopOffset = { y: 0 };
 
-   /** @output {StDropDownMenuItem} change Event emitted when user select an item */
+   /** @output {StDropDownMenuItem} [change] Event emitted when user select an item */
    @Output() change: EventEmitter<StDropDownMenuItem> = new EventEmitter<StDropDownMenuItem>();
 
    @ViewChild('buttonId') buttonElement: ElementRef;
+   @ViewChild('itemList') itemListElement: ElementRef;
 
-   public itemsGroup: StDropDownMenuGroup[] = [];
-   public widthMenu: string;
+   widthMenu: string;
 
-   constructor(private cd: ChangeDetectorRef) { }
+   private _itemHeight: number = 42;
 
-   ngOnInit(): void {
-      if (undefined === this.items) {
-         throw new Error('Attribute items is required');
-      }
-      this.checkGroup();
+   constructor(private el: ElementRef, private cd: ChangeDetectorRef) { }
+
+   get componentId(): string | null {
+      const id = (this.el.nativeElement as HTMLElement).getAttribute('id');
+      return id !== undefined && id !== null ? id : null;
    }
 
-   ngOnChanges(values: any): void {
-      if (values.items) {
-         this.checkGroup();
-      }
+   get menuId(): string | null {
+      return this.componentId !== null ? `${this.componentId}-menu` : null;
    }
 
-   ngAfterViewInit(): void {
-      setTimeout(() => {
-         this.updateWidth();
-      }, 0);
+   get isItemGroup(): boolean {
+      return this.isDropDownGroup(this.items);
    }
 
-   checkGroup(): void {
-      if (this.isDropDownGroup(this.items)) {
-         this.itemsGroup = this.items;
-      }
+   get menuMaxHeight(): string {
+      return `${this._itemHeight * this.itemsBeforeScroll}px`;
+   }
+
+   getItemId(value: any | undefined): string | null {
+      return this.componentId !== null ? `${this.componentId}-option-${this.getItemValueMerged(value)}` : null;
    }
 
    isDropDownGroup(value: StDropDownMenuItem[] | StDropDownMenuGroup[]): value is StDropDownMenuGroup[] {
       return value && value.length > 0 && (<StDropDownMenuGroup>value[0]).title !== undefined;
    }
 
+   ngAfterViewInit(): void {
+      this.updateWidth();
+   }
+
+   ngOnChanges(changes: SimpleChanges): void {
+      if (changes && changes.active && changes.active.currentValue && this.selectedItem && this.moveSelected) {
+         // Only can do this functionality with timeout because we need to wait for angular to load new DOM
+         // with items before move scroll
+         setTimeout(() => {
+            const parent: HTMLElement = this.itemListElement.nativeElement;
+            const listOfElements: NodeListOf<Element> = parent.getElementsByClassName('selected');
+            if (listOfElements && listOfElements.length > 0) {
+               const target: HTMLElement = (listOfElements.item(0) as HTMLElement);
+               parent.scrollTop = target.offsetTop - parent.offsetTop;
+            }
+         }, 0);
+      }
+   }
+
    onChange(value: StDropDownMenuItem): void {
       this.change.emit(value);
    }
 
-   @HostListener('window:resize', ['$event']) onResize(event: Event): void {
-      this.updateWidth();
-   }
-
-   private updateWidth(): void {
+   @HostListener('window:resize')
+   @HostListener('window:load')
+   updateWidth(): void {
       if (this.buttonElement && this.buttonElement.nativeElement) {
-         let el: HTMLElement = this.buttonElement.nativeElement;
+         const button: HTMLElement = this.buttonElement.nativeElement;
 
-         if (el.children && el.children.length > 0) {
-            this.widthMenu = el.children[0].getBoundingClientRect().width + 'px';
+         if (button.children && button.children.length > 0) {
+            this.widthMenu = button.children[0].getBoundingClientRect().width + 'px';
          } else {
-            this.widthMenu = el.getBoundingClientRect().width + 'px';
+            this.widthMenu = button.getBoundingClientRect().width + 'px';
          }
       }
       this.cd.markForCheck();
    }
-}
 
+   private getItemValueMerged(value: any): string {
+      return value ? value.toString().replace(/\s+/g, '_') : '';
+   }
+}

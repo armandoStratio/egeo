@@ -24,6 +24,11 @@ export class StDemoLoggerService {
       return this._logStream.asObservable();
    }
 
+   public log(...messages: any[]): void {
+      const strMessages: string[] = messages.map(message => message.toString());
+      this.notifyAlert(new StDemoLogger(strMessages.join(' ')));
+   }
+
    public notifyAlert(log: StDemoLogger): void;
    public notifyAlert(severity: StDemoLoggerSeverity, message: string): void;
    public notifyAlert(severityOrLog: StDemoLogger | StDemoLoggerSeverity, message?: string): void {

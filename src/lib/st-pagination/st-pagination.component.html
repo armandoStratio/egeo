@@ -12,7 +12,7 @@
 -->
 <div class="sth-pagination pagination" [ngClass]="theme">
    <div class="selector" *ngIf="showItemsPerPage()">
-      <st-dropdown [themeClass]="getThemeDropdown()" [items]="items" (change)="onChangePerPage($event)" attr.id="{{'dropdown' + qaTag}}"></st-dropdown>
+      <st-select [options]="items" [selected]="selectedItem" (select)="onChangePerPage($event)" attr.id="{{'dropdown' + qaTag}}"></st-select>
    </div>
 
    <div class="navigator sth-pagination-navigator">

@@ -9,70 +9,29 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-/// tipography EXTENDS (@extend %button-label-regular;):
-
 @import '../utils/forms';
-
-%select-dropdown-default {
-   color: $action-secondary-07;
-   font-family: $egeo-nunito-sans;
-   font-size: $egeo-font-size-xsmall;
-   line-height: $egeo-line-height-xsmall;
-}
-
-/// STYLES:
 .st-select {
 
    .st-label {
-      @extend %form-label-default;
       display: flex;
       width: 100%;
    }
 
-   .dropdown-menu {
-      background-color: $neutral-00;
-      border-radius:0 0 4px 4px;
-      border: solid 1px $input-field-onfocus;
-      border-top: none;
-      position: absolute;
-      border-top: none;
-      top: 39px;
-
-      & > * {
-         border-top: 1px solid $input-field-onfocus;
+   &.st-select-opened {
+      .st-input {
+         border-bottom: none;
       }
-
-      .st-dropdown-menu-item {
-         @extend %select-dropdown-default;
-      }
-
-      ul {
-         margin-top: 2px !important;
-      }
-   }
-
-   &.disabled {
-
-      .st-label {
-         color: $neutral-06;
-      }
-   }
-
-   &.active:not(.disabled) {
-
       .st-label {
          color: $action-primary-default;
       }
-
-      .st-input {
-         color: $neutral-07;
-      }
-
       .arrow {
          color: $action-primary-default;
       }
+      .st-input {
+         border-radius: 4px 4px 0 0;
+      }
+      .st-dropdown-menu {
+         border-radius: 0 0 4px 4px;
+      }
    }
 }
-
-
-

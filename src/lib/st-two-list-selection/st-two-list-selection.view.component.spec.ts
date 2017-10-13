@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Http } from '@angular/http';
 import { By } from '@angular/platform-browser';
@@ -26,7 +26,6 @@ import { StTwoListSelectionViewComponent } from './st-two-list-selection.view.co
 // Order modules
 import { PipesModule } from '../pipes/pipes.module';
 import { StSearchModule } from '../st-search/st-search.module';
-import { StDropdownModule } from '../st-dropdown/st-dropdown.module';
 import { StCheckboxModule } from '../st-checkbox/st-checkbox.module';
 
 // Mdel
@@ -56,8 +55,9 @@ function generateData(numData: number): StTwoListSelectionElement[] {
 describe('StTwoListSelectionComponent', () => {
    beforeEach(async(() => {
       TestBed.configureTestingModule({
-         imports: [StSearchModule, PipesModule, VirtualScrollModule, StDropdownModule, StCheckboxModule],
-         declarations: [StTwoListSelectionViewComponent, ListSelectionComponent, ListItemComponent, ListScrollComponent]
+         imports: [StSearchModule, PipesModule, VirtualScrollModule, StCheckboxModule],
+         declarations: [StTwoListSelectionViewComponent, ListSelectionComponent, ListItemComponent, ListScrollComponent],
+         schemas: [NO_ERRORS_SCHEMA]
       })
          .compileComponents();  // compile template and css
    }));

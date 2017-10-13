@@ -66,6 +66,10 @@ export class StSearchComponent extends EventWindowManager implements OnChanges, 
       super(_render, cd, buttonElement);
    }
 
+   get menuId(): string {
+      return this.qaTag ? this.qaTag + '-autocomplete-menu' : null;
+   }
+
    public ngOnInit(): void {
       if (this.value) {
          this.searchBox.setValue(this.value);

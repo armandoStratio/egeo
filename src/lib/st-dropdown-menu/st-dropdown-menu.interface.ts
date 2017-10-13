@@ -10,26 +10,26 @@
  */
 import { TranslateableElement } from '../utils/egeo-resolver/egeo-resolve-model';
 
-export interface StDropDownMenuItem {
+export class StDropDownMenuItem {
    label: string;
    value: any;
    icon?: string;
    selected?: boolean;
 }
 
-export interface StDropDownMenuGroup {
+export class StDropDownMenuGroup {
    title?: string;
    items: StDropDownMenuItem[];
 }
 
-export interface StDropDownMenuItemSchema {
+export class StDropDownMenuItemSchema {
    label: TranslateableElement;
    value: any;
    icon?: string;
    selected?: boolean;
 }
 
-export interface StDropDownMenuGroupSchema {
+export class StDropDownMenuGroupSchema {
    title?: TranslateableElement;
    items: StDropDownMenuItemSchema[];
 }

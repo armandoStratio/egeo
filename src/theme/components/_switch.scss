@@ -10,13 +10,11 @@
  */
 @import '../constants/fonts';
 @import '../constants/colors';
-@import '../utils/forms';
 
 .st-switch {
    font-family: $egeo-nunito-sans;
 
    label {
-      @extend %form-label-default;
       line-height: 1.9rem !important;
    }
 }

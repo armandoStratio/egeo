@@ -68,8 +68,8 @@ export class StTwoListSelectionComponent extends StTwoListSelection implements O
 
    @Output() selectExtraLabelAll: EventEmitter<StTwoListSelectExtraLabelAction> = new EventEmitter<StTwoListSelectExtraLabelAction>();
    @Output() selectExtraLabelSelected: EventEmitter<StTwoListSelectExtraLabelAction> = new EventEmitter<StTwoListSelectExtraLabelAction>();
-   @Output() changeOrderAll: EventEmitter<StDropDownMenuItem> = new EventEmitter<StDropDownMenuItem>();
-   @Output() changeOrderSelected: EventEmitter<StDropDownMenuItem> = new EventEmitter<StDropDownMenuItem>();
+   @Output() changeOrderAll: EventEmitter<any> = new EventEmitter<any>();
+   @Output() changeOrderSelected: EventEmitter<any> = new EventEmitter<any>();
 
    @Input() config: StTwoListSelectionConfig;
    @Input() editable: boolean = false;

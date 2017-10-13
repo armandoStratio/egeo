@@ -13,6 +13,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { StPopComponent } from './st-pop.component';
+import { StPopPlacement } from './st-pop.model';
 
 @Component({
    selector: 'test-component',
@@ -25,7 +26,7 @@ import { StPopComponent } from './st-pop.component';
 })
 class TestComponent {
    @Input() hidden: boolean = true;
-   @Input() placement: string = 'top';
+   @Input() placement: StPopPlacement = StPopPlacement.TOP;
 }
 
 describe('StPopComponent', () => {
@@ -62,40 +63,35 @@ describe('StPopComponent', () => {
    it('should get correct coords', () => {
       component.hidden = false;
 
-      component.placement = 'top';
+      component.placement = StPopPlacement.TOP;
       fixture.detectChanges();
       let content: HTMLElement = fixture.debugElement.nativeElement.querySelector('#content');
       expect(content.style.transform).toEqual('translate3d(10px, -30px, 0px)');
 
-      component.placement = 'top-start';
+      component.placement = StPopPlacement.TOP_START;
       fixture.detectChanges();
       content = fixture.debugElement.nativeElement.querySelector('#content');
       expect(content.style.transform).toEqual('translate3d(0px, -30px, 0px)');
 
-      component.placement = 'top-end';
+      component.placement = StPopPlacement.TOP_END;
       fixture.detectChanges();
       content = fixture.debugElement.nativeElement.querySelector('#content');
       expect(content.style.transform).toEqual('translate3d(20px, -30px, 0px)');
 
-      component.placement = 'bottom';
+      component.placement = StPopPlacement.BOTTOM;
       fixture.detectChanges();
       content = fixture.debugElement.nativeElement.querySelector('#content');
       expect(content.style.transform).toEqual('translate3d(10px, 0px, 0px)');
 
-      component.placement = 'bottom-start';
+      component.placement = StPopPlacement.BOTTOM_START;
       fixture.detectChanges();
       content = fixture.debugElement.nativeElement.querySelector('#content');
       expect(content.style.transform).toEqual('translate3d(0px, 0px, 0px)');
 
-      component.placement = 'bottom-end';
+      component.placement = StPopPlacement.BOTTOM_END;
       fixture.detectChanges();
       content = fixture.debugElement.nativeElement.querySelector('#content');
       expect(content.style.transform).toEqual('translate3d(20px, 0px, 0px)');
-
-      component.placement = 'unknown';
-      fixture.detectChanges();
-      content = fixture.debugElement.nativeElement.querySelector('#content');
-      expect(content.style.transform).toEqual('translate3d(0px, 0px, 0px)');
    });
 
 

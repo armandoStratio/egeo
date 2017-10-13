@@ -46,6 +46,7 @@ export class StPaginationComponent implements OnInit, OnChanges {
    public firstItem: number;
    public lastItem: number;
    public items: StDropDownMenuItem[] = [];
+   public selectedItem: StDropDownMenuItem;
 
    constructor(private cd: ChangeDetectorRef) {
       if (!this.label) {
@@ -76,27 +77,12 @@ export class StPaginationComponent implements OnInit, OnChanges {
    }
 
    generateItems(): void {
-      this.items = [];
-      this.perPageOptions.forEach(option => {
-         this.items.push(this.generateItem(option));
-      });
-   }
-
-   generateItem(n: number): StDropDownMenuItem {
-      return {
-         label: `${this.label.display} ${n} ${this.label.element} ${this.label
+      this.items = this.perPageOptions.map(option => ({
+         label: `${this.label.display} ${option} ${this.label.element} ${this.label
             .perPage}`,
-         value: n,
-         selected: this.checkSelected(n)
-      };
-   }
-
-   checkSelected(value: number): boolean {
-      if (this.perPage <= value) {
-         return true;
-      }
-
-      return false;
+         value: option
+      }));
+      this.selectedItem = this.items.find(item => item.value === this.perPage);
    }
 
    showItemsPerPage(): boolean {
@@ -151,17 +137,10 @@ export class StPaginationComponent implements OnInit, OnChanges {
       }
    }
 
-   onChangePerPage(item: StDropDownMenuItem): void {
+   onChangePerPage(perPage: number): void {
       this.currentPage = 1;
-      this.perPage = item.value;
+      this.perPage = perPage;
       this.updatePages();
-   }
-
-   getThemeDropdown(): string {
-      if (this.theme === 'themeA') {
-         return 'themeB';
-      } else {
-         return 'themeA';
-      }
+      this.selectedItem = this.items.find(item => item.value === this.perPage);
    }
 }

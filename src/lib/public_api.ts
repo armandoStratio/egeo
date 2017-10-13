@@ -53,9 +53,6 @@ export { StBreadcrumbsModule } from './st-breadcrumbs/st-breadcrumbs.module';
 // Checkbox
 export { StCheckboxModule } from './st-checkbox/st-checkbox.module';
 
-// Dropdown
-export { StDropdownModule } from './st-dropdown/st-dropdown.module';
-
 // Dropdown menu
 export {
    StDropDownMenuGroup,
@@ -217,6 +214,7 @@ export { StWidgetModule } from './st-widget/st-widget.module';
 
 
 export { StPopModule } from './st-pop/st-pop.module';
+export { StPopOffset, StPopPlacement } from './st-pop/st-pop.model';
 
 // Utils
 export { StDemoGeneratorModule } from './utils/demo-generator/demo-generator.module';

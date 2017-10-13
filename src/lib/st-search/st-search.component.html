@@ -10,7 +10,7 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<st-dropdown-menu [items]="autocompleteList" [qaTag]="qaTag + 'autocomplete-menu'" (change)="changeOption($event)" [active]="isActive"
+<st-dropdown-menu [items]="autocompleteList" [attr.id]="menuId" (change)="changeOption($event)" [active]="isActive"
     [placement]="'bottom-start'" [emptyListMessage]="emptyAutocompleteListMessage">
    <div class="st-search sth-search" #buttonId>
       <input [attr.id]="qaTag" [formControl]="searchBox" [placeholder]="placeholder" (keypress)="onKeyPress($event)"

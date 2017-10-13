@@ -14,8 +14,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 @Component({
    selector: 'st-textarea-demo',
    templateUrl: 'st-textarea-demo.html',
-   styleUrls: ['./st-textarea-demo.scss'],
-
+   styleUrls: ['./st-textarea-demo.scss']
 })
 export class StTextareaDemoComponent {
    public myForm: FormGroup;

@@ -14,10 +14,10 @@ import { NgModule } from '@angular/core';
 import { StPaginationComponent } from './st-pagination.component';
 import { StPaginationPipe } from './st-pagination.pipe';
 import { StPaginationService } from './st-pagination.service';
-import { StDropdownModule } from '../st-dropdown/st-dropdown.module';
+import { StSelectModule } from '../st-select/st-select.module';
 
 @NgModule({
-   imports: [ CommonModule, StDropdownModule ],
+   imports: [ CommonModule, StSelectModule ],
    exports: [ StPaginationComponent, StPaginationPipe ],
    declarations: [ StPaginationComponent, StPaginationPipe ],
    providers: [

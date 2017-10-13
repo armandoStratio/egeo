@@ -9,36 +9,97 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { Component } from '@angular/core';
-import { StDropDownMenuItem } from '@stratio/egeo';
+import { StDropDownMenuItem, StDropDownMenuGroup } from '@stratio/egeo';
+
+import { StDemoLoggerSeverity } from '../shared/st-demo-logger/st-demo-loger.model';
+import { StDemoLoggerService } from '../shared/st-demo-logger/st-demo-logger.service';
 
 @Component({
    selector: 'st-dropdown-menu-demo',
-   templateUrl: 'st-dropdown-menu-demo.html',
-   styles: ['.button{border: 1px solid black;}']
+   templateUrl: 'st-dropdown-menu-demo.html'
 })
 export class StDropdownMenuDemoComponent {
 
-   public menu: StDropDownMenuItem[] = [];
-   public active: boolean = false;
-   public selectedValue: StDropDownMenuItem = {value: 'none', label: 'none'};
+   public titles: string[] = [];
+   public menus: ((StDropDownMenuItem | StDropDownMenuGroup)[])[] = [];
+   public active: boolean[] = [];
+   public selectedValue: (StDropDownMenuItem | undefined)[] = [];
 
-   constructor() {
-      for (let i = 0; i < 15; i++) {
-         this.menu.push({
-            label: 'option-' + i,
-            value: 'option-' + i
-         });
-      }
+   constructor(private _logger: StDemoLoggerService) {
+      const menus: number = 5;
+      this.active = Array.from(Array<boolean>(menus)).map(() => false);
+      this.selectedValue = Array.from(Array<StDropDownMenuItem>(menus)).map(() => undefined);
+
+      this.titles = ['Normal', 'With Scroll', 'Large Text', 'Group', 'Group With Scroll'];
+
+      this.menus.push(this.generateNormal());
+      this.menus.push(this.generateWithScroll());
+      this.menus.push(this.generateLargeText());
+      this.menus.push(this.generateGroup());
+      this.menus.push(this.generateGroupWithScroll());
    }
 
-   changeActive(): void {
-      this.active = !this.active;
-      console.log('click button and active is: ', this.active);
+   changeActive(position: number): void {
+      this.active[position] = !this.active[position];
+      this._logger.log('click button and active is: ', this.active[position]);
    }
 
-   onChange(element: StDropDownMenuItem): void {
-      this.active = false;
-      this.selectedValue = element;
-      console.log('select value and hide menu');
+   onChange(selected: StDropDownMenuItem, position: number): void {
+      this.active[position] = false;
+      this.selectedValue[position] = selected;
+      this._logger.log('select value and hide menu', JSON.stringify(selected));
+   }
+
+   private generateNormal(): StDropDownMenuItem[] {
+      return Array.from(Array<StDropDownMenuItem>(5)).map((value, i) => ({
+         label: `Option ${i}`,
+         value: `option-${i}`
+      }));
+   }
+
+   private generateWithScroll(): StDropDownMenuItem[] {
+      return Array.from(Array<StDropDownMenuItem>(20)).map((value, i) => ({
+         label: `Option ${i}`,
+         value: `option-${i}`
+      }));
+   }
+
+   private generateLargeText(): StDropDownMenuItem[] {
+      return Array.from(Array<StDropDownMenuItem>(10)).map((value, i) => ({
+         label: i === 3 ? `Option ${i} with large text that not fit in button size` : `Option ${i}`,
+         value: `option-${i}`
+      }));
+   }
+
+   private generateGroup(): StDropDownMenuGroup[] {
+      return [
+         {title: 'Severity', items: [
+            {label: 'Critical Error', value: 'critical'},
+            {label: 'Warning', value: 'Warning'}
+         ]},
+         {title: 'Status', items: [
+            {label: 'Active', value: 'active'},
+            {label: 'Inactive', value: 'inactive'}
+         ]}
+      ];
+   }
+
+   private generateGroupWithScroll(): StDropDownMenuGroup[] {
+      return [
+         {title: 'Severity', items: [
+            {label: 'Critical Error', value: 'critical'},
+            {label: 'Warning', value: 'Warning'}
+         ]},
+         {title: 'Status', items: [
+            {label: 'Active', value: 'active'},
+            {label: 'Inactive', value: 'inactive'},
+            {label: 'Paused', value: 'paused'},
+            {label: 'Stopped', value: 'stopped'},
+            {label: 'Running', value: 'running'},
+            {label: 'Waiting', value: 'waiting'},
+            {label: 'Delayed', value: 'delayed'},
+            {label: 'Unknown', value: 'unknown'}
+         ]}
+      ];
    }
 }

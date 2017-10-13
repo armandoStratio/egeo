@@ -19,9 +19,10 @@ import {
 } from '@angular/core';
 import { startsWith as _startsWith } from 'lodash';
 
-export type StPopPlacement = 'top' | 'top-start' | 'top-end' |
-   'bottom' | 'bottom-start' | 'bottom-end';
+import { StPopOffset, StPopPlacement } from './st-pop.model';
 
+
+// Internal type
 type StCoords = { x: number, y: number, z: number };
 
 /**
@@ -48,12 +49,12 @@ type StCoords = { x: number, y: number, z: number };
 })
 export class StPopComponent implements OnInit {
 
-   /** @Input { 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end'}
-    * [placement='bottom-start'] Define position of content relative to button
-    */
-   @Input() placement: StPopPlacement = 'bottom-start';
+   /** @Input {StPopPlacement} [placement=StPopPlacement.BOTOM_START] Define position of content relative to button */
+   @Input() placement: StPopPlacement = StPopPlacement.BOTTOM_START;
    /** @Input {boolean} [hidden=true] TRUE: show pop content, FALSE: hide pop content */
    @Input() hidden: boolean = true;
+   /** @Input {StPopOffset} [offset={x: 0 , y: 0}] For position with offset in x o y axis */
+   @Input() offset: StPopOffset = { x: 0, y: 0 };
 
 
    private button: ClientRect;
@@ -86,14 +87,30 @@ export class StPopComponent implements OnInit {
       const coords: StCoords = { x: 0, y: 0, z: 0 };
       const clientRect: ClientRect = buttonEl.getBoundingClientRect();
 
-      if (_startsWith(this.placement, 'top')) {
-         coords.y = clientRect.height * -1;
-         coords.x = this.placement === 'top' ? coords.x = clientRect.width / 2 : coords.x;
-         coords.x = this.placement === 'top-end' ? coords.x = clientRect.width : coords.x;
-      } else if (_startsWith(this.placement, 'bottom')) {
-         coords.x = this.placement === 'bottom' ? coords.x = clientRect.width / 2 : coords.x;
-         coords.x = this.placement === 'bottom-end' ? coords.x = clientRect.width : coords.x;
+      switch (this.placement) {
+         case StPopPlacement.BOTTOM:
+            coords.x = clientRect.width / 2;
+            break;
+         case StPopPlacement.BOTTOM_END:
+            coords.x = clientRect.width;
+            break;
+         case StPopPlacement.TOP:
+            coords.y = clientRect.height * -1;
+            coords.x = clientRect.width / 2;
+            break;
+         case StPopPlacement.TOP_START:
+            coords.y = clientRect.height * -1;
+            break;
+         case StPopPlacement.TOP_END:
+            coords.y = clientRect.height * -1;
+            coords.x = clientRect.width;
+            break;
+         default:
+            break;
       }
+
+      coords.y = coords.y + this.offset.y;
+      coords.x = coords.x + this.offset.x;
 
       return coords;
    }

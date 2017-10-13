@@ -47,10 +47,6 @@ describe('StDropdownMenuComponent', () => {
       component = fixture.componentInstance;
    });
 
-   it('should throw an error for missing Items attribute', () => {
-      expect(() => component.ngOnInit()).toThrowError('Attribute items is required');
-   });
-
    it('should show two items in component', () => {
       component.items = items;
       fixture.detectChanges();
@@ -60,14 +56,14 @@ describe('StDropdownMenuComponent', () => {
    it('should show the menu inactive', () => {
       component.items = items;
       fixture.detectChanges();
-      expect(fixture.debugElement.nativeElement.querySelector('.dropdown-menu')).toBeNull();
+      expect(fixture.debugElement.nativeElement.querySelector('.st-dropdown-menu')).toBeNull();
    });
 
    it('should show the menu active', async(() => {
       component.items = items;
       component.active = true;
       fixture.whenStable().then(() => {
-         expect(fixture.debugElement.nativeElement.querySelector('.dropdown-menu')).toBeDefined();
+         expect(fixture.debugElement.nativeElement.querySelector('.st-dropdown-menu')).toBeDefined();
       });
    }));
 

@@ -1,0 +1,43 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-dropdown-menu
+   class="st-select-menu"
+   [items]="options"
+   [attr.id]="optionsId"
+   [active]="expandedMenu"
+   [placement]="'bottom-start'"
+   (change)="onChangeOption($event)"
+   [selectedItem]="selected"
+   >
+
+   <div (click)="onButtonClick()" (keypress)="onButtonKeyPress($event)" #button class="button-container">
+      <label *ngIf="hasLabel" for="inputId" [attr.title]="tooltip" [attr.id]="labelId" class="st-label" [ngClass]="{error: hasError}">{{label}}</label>
+      <input
+         #input
+         [attr.aria-expanded]="expandedMenu"
+         [attr.disabled]="disableValue"
+         [attr.id]="inputId"
+         [attr.name]="inputName"
+         [placeholder]="placeholder"
+         [value]="selectedValue"
+         aria-haspopup="true"
+         class="st-input"
+         readonly
+         type="text"
+      />
+      <i class="icon-arrow2_down arrow" [ngClass]="{'with-label': hasLabel}"></i>
+   </div>
+   <div *ngIf="hasError">
+      {{errorMessage}}
+   </div>
+</st-dropdown-menu>

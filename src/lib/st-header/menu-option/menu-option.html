@@ -11,7 +11,7 @@
 
 -->
 
-<st-dropdown-menu [items]="submenuList" [qaTag]="qaId" (change)="changeOption($event)" [active]="isActive && hasSubmenu" [placement]="'bottom-start'">
+<st-dropdown-menu [items]="submenuList" (change)="changeOption($event)" [active]="isActive && hasSubmenu" [placement]="'bottom-start'" [offset]="{x: 0, y: 5}">
    <div class="sth-header-menu-option" [attr.id]="qaId" routerLinkActive="active">
       <a class="sth-header-menu-option-name" [routerLink]="option.link">
          <i [ngClass]="option.icon" class="sth-header-menu-option-icon" [title]="option.label"></i>

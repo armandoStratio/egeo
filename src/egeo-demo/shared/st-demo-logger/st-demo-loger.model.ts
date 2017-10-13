@@ -11,6 +11,10 @@
 export enum StDemoLoggerSeverity { INFO, WARN, ERROR, DEBUG }
 
 export class StDemoLogger {
-   severity: StDemoLoggerSeverity;
+   severity: StDemoLoggerSeverity = StDemoLoggerSeverity.INFO;
    message: string;
+
+   constructor(message: string) {
+      this.message = message;
+   }
 }

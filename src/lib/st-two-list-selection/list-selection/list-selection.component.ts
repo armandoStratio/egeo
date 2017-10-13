@@ -35,7 +35,7 @@ export class ListSelectionComponent {
    @Output() selectItem: EventEmitter<StTwoListSelectionElement> = new EventEmitter<StTwoListSelectionElement>();
    @Output() selectExtraLabel: EventEmitter<StTwoListSelectExtraLabelAction> = new EventEmitter<StTwoListSelectExtraLabelAction>();
    @Output() search: EventEmitter<string> = new EventEmitter<string>();
-   @Output() changeOrder: EventEmitter<StDropDownMenuItem> = new EventEmitter<StDropDownMenuItem>();
+   @Output() changeOrder: EventEmitter<any> = new EventEmitter<any>();
 
    scrollItems: StTwoListSelectionElement[] = [];
 

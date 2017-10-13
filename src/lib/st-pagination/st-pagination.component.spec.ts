@@ -10,8 +10,7 @@
  */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StPaginationComponent } from './st-pagination.component';
-
-import { StDropdownModule } from '../st-dropdown/st-dropdown.module';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('StPaginationComponent', () => {
 
@@ -20,8 +19,9 @@ describe('StPaginationComponent', () => {
 
    beforeEach(async(() => {
       TestBed.configureTestingModule({
-         imports: [StDropdownModule],
-         declarations: [StPaginationComponent]
+         declarations: [StPaginationComponent],
+         schemas: [NO_ERRORS_SCHEMA]
+
       })
          .compileComponents();  // compile template and css
    }));

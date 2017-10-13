@@ -8,29 +8,46 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+   Component,
+   EventEmitter,
+   Input,
+   Output
+} from '@angular/core';
+
 import { StDropDownMenuItem } from '../st-dropdown-menu.interface';
+
 
 @Component({
    selector: 'st-dropdown-menu-item',
    templateUrl: './st-dropdown-menu-item.component.html'
 })
-export class StDropdownMenuItemComponent implements OnInit {
+export class StDropdownMenuItemComponent {
+   @Input() index: number = 0;
+   @Input() item: StDropDownMenuItem = undefined;
+   @Input() selectedItem: StDropDownMenuItem = undefined;
+   @Input() styleSelected: boolean = true;
 
-   @Input() item: StDropDownMenuItem;
-   @Input() qaTag: string;
    @Output() change: EventEmitter<StDropDownMenuItem> = new EventEmitter<StDropDownMenuItem>();
 
-   constructor() {
-   }
-
-   ngOnInit(): void {
-      if (undefined === this.item) {
-         throw new Error('Attribute item is required');
-      }
-   }
+   constructor() { }
 
    onChangeItem(): void {
       this.change.emit(this.item);
+   }
+
+   get isSelected(): boolean {
+      return (this.hasItem && this.item.selected) ||
+         (this.hasItem && this.selectedItem !== undefined && this.item.value === this.selectedItem.value);
+   }
+
+   get icon(): string | undefined {
+      if (this.hasItem) {
+         return this.item.icon;
+      }
+   }
+
+   get hasItem(): boolean {
+      return this.item !== undefined && this.item !== null;
    }
 }
